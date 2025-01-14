@@ -3,6 +3,8 @@ import Root from "../Layout/Root";
 import Error from '../Pages/Error'
 import Home from '../Pages/Home.jsx' 
 import Apartment from '../Pages/Apartment' 
+import Login from "../Pages/Login.jsx";
+import Register from "../Pages/Register.jsx";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -16,7 +18,15 @@ const router = createBrowserRouter([
         {
           path: 'apartment',
           element: <Apartment />
-        }
+        },
+        {
+          path: 'login',
+          element: <Login />
+        },
+        {
+          path: 'Register',
+          element: <Register />
+        },
       ]
     },
   ]);
