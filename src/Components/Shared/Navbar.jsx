@@ -11,8 +11,33 @@ import {
   NavbarToggle,
 } from "flowbite-react";
 import logo from '../../assets/logo.png'
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../CustomHooks/useAuth";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
+
+
 const Navbar = () => {
+
+  const { user, signOutUser, setUser } = useAuth();
+  const [imgSrc, setImgSrc] = useState(user?.photoURL);
+  useEffect(() => {
+    setImgSrc(user?.photoURL)
+  }, [user])
+  const navigate = useNavigate();
+
+
+  async function logOut() {
+    try {
+      await signOutUser();
+      setUser(null);
+      toast.success("Logged Out Successfully!");
+      navigate('/');
+    } catch (error) {
+      toast.error('Error logging out:', error.message);
+    }
+  }
   const menus = [
     {
       name: "Home",
@@ -36,7 +61,7 @@ const Navbar = () => {
             arrowIcon={false}
             inline
             label={
-              <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+              <Avatar alt="User settings" img={imgSrc} rounded />
             }
           >
             <DropdownHeader>
@@ -44,23 +69,23 @@ const Navbar = () => {
             </DropdownHeader>
             <DropdownItem as={Link} to="/dashboard">Dashboard</DropdownItem>
             <DropdownDivider />
-            <DropdownItem>Sign out</DropdownItem>
+            <DropdownItem onClick={logOut}>Log out</DropdownItem>
           </Dropdown>
           <NavbarToggle className="ml-2" />
         </div>
         <NavbarCollapse>
           {
             menus.map((menu => <NavLink
-                key={menu.path}
-                to={menu.path}
-                className={({ isActive }) =>
-                  isActive
-                    ? 'text-purple-600 font-bold dark:text-purple-400'
-                    : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:purple-blue-400'
-                }
-              >
-                {menu.name}
-              </NavLink>
+              key={menu.path}
+              to={menu.path}
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-purple-600 font-bold dark:text-purple-400'
+                  : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:purple-blue-400'
+              }
+            >
+              {menu.name}
+            </NavLink>
 
             ))
           }
