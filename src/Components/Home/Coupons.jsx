@@ -50,7 +50,7 @@ function Coupons() {
 
                         <motion.Card
                             key={index}
-                            className="shadow-xl dark:bg-gray-800 transition-transform transform hover:scale-105 hover:shadow-2xl"
+                            className="shadow-xl py-5 rounded dark:bg-gray-800 transition-transform transform hover:scale-105 hover:shadow-2xl"
                             initial={{ opacity: 0, y: 50 }} 
                             animate={{ opacity: 1, y: 0 }} 
                             transition={{ duration: 1, ease: [1, -0.2, 0.11, -0.6] }}
