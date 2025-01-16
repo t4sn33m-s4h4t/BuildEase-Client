@@ -19,13 +19,18 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const axiosSecure = useAxiosSecure();
+
+
   async function registerUser(name, email) {
-    try {
-      axiosSecure.put("/register", { name, email });
-    } catch (error) {
-      console.error("Error during registration:", error);
+  try {
+    const response = await axiosSecure.put("/register", { name, email });
+    if (response.data.token) {
+      localStorage.setItem("authToken", response.data.token); 
     }
+  } catch (error) {
+    console.error("Error during registration:", error);
   }
+}
 
   const createUser = async (email, password, name, imageURL) => {
     try {
@@ -50,6 +55,10 @@ const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const tokenResponse = await axiosSecure.post("/jwt", { email });
+      if (tokenResponse.data.token) {
+        localStorage.setItem("authToken", tokenResponse.data.token);
+      }
       return userCredential.user;
     } catch (error) {
       throw new Error(`Failed to sign in: ${error.message}`);
@@ -125,23 +134,27 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      axiosSecure
+        .post("/jwt", { token })
+        .then((res) => {
+          setLoading(false);
+        })
+        .catch(() => {
+          localStorage.removeItem("authToken");
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      if (currentUser?.email) {
-        const user = { email: currentUser.email };
-        axiosSecure.post(`/jwt`, user).then(res => {
-            setLoading(false);
-          });
-      } else {
-        axiosSecure.post(`/logout`, {}).then(res => {
-            setLoading(false);
-          });
-      }
     });
-    return () => {
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
+  
 
   return (
     <AuthContext.Provider value={authInfo}>

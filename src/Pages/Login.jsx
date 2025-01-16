@@ -10,7 +10,7 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { signIn, setUser, signInWithGoogle, signInWithGitHub } = useAuth();
-
+    const [btnText, setbtnText] = useState("Login")
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -25,6 +25,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setbtnText('Logining...')
         setPassError('');
         if (!validatePassword(password)) {
             const errorMessage = "Password must have at least one uppercase, one lowercase, and at least 6 characters.";
@@ -41,6 +42,8 @@ const Login = () => {
             navigate(location?.state?.from || '/');
         } catch (error) {
             toast.error(error.message || 'Failed to sign in. Please try again.');
+        } finally {
+            setbtnText('Login')
         }
 
         setEmail('');
@@ -102,7 +105,7 @@ const Login = () => {
 
                             <div className="my-6 border-b text-center">
                                 <div className="leading-none px-2 inline-block text-sm tracking-wide font-medium bg-white transform translate-y-1/2 text-purple-700">
-                                <Link to='/register'>Don't Have An Account?</Link>
+                                    <Link to='/Login'>Don't Have An Account?</Link>
                                 </div>
                             </div>
 
@@ -130,7 +133,7 @@ const Login = () => {
                                     type="submit"
                                     className="mt-5 tracking-wide font-semibold bg-purple-500 text-gray-100 w-full py-4 rounded-lg hover:bg-purple-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:outline-none">
                                     <MdLogin />
-                                    <span className="ml-3">Sign Up</span>
+                                    <span className="ml-3">{btnText}</span>
                                 </button>
                             </form>
                         </div>

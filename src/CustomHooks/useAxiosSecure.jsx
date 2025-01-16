@@ -1,9 +1,20 @@
-import axios from 'axios';
-const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_BACKEND_URL
-})
-const useAxios = () => {
-  return axiosInstance;
-}
+import axios from "axios";
 
-export default useAxios
+const useAxiosSecure = () => {
+  
+  const instance = axios.create({
+    baseURL: import.meta.env.REACT_APP_API_URL,
+  });
+  
+  instance.interceptors.request.use((config) => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  });
+
+  return instance;
+};
+
+export default useAxiosSecure;

@@ -7,7 +7,7 @@ import {
   Navbar as Nv,
   NavbarBrand,
   NavbarCollapse,
-  NavbarLink,
+
   NavbarToggle,
 } from "flowbite-react";
 import logo from '../../assets/logo.png'
@@ -50,27 +50,53 @@ const Navbar = () => {
 
   ]
   return (
-    <div className="px-1 md:px-20 lg:px-44 bg-slate-200">
+    <div className="px-1 md:px-20 lg:px-44 bg-slate-200 sticky top-0 z-50">
       <Nv fluid rounded className="bg-transparent">
         <NavbarBrand as={Link} href="/">
           <img className="md:max-w-14 max-w-12 mr-1 md:mr-3" src={logo} alt="" />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white ">BuildEase</span>
         </NavbarBrand>
         <div className="flex md:order-2">
-          <Dropdown
-            arrowIcon={false}
-            inline
-            label={
-              <Avatar alt="User settings" img={imgSrc} rounded />
-            }
-          >
-            <DropdownHeader>
-              <span className="block text-sm">Bonnie Green</span>
-            </DropdownHeader>
-            <DropdownItem as={Link} to="/dashboard">Dashboard</DropdownItem>
-            <DropdownDivider />
-            <DropdownItem onClick={logOut}>Log out</DropdownItem>
-          </Dropdown>
+          {
+            user?.email ?
+              <Dropdown
+                arrowIcon={false}
+                inline
+                label={
+                  <Avatar alt="User settings" img={imgSrc} rounded />
+                }
+              >
+                <DropdownHeader>
+                  <span className="block text-sm">{user?.displayName}</span>
+                </DropdownHeader>
+                <DropdownItem as={Link} to="/dashboard">Dashboard</DropdownItem>
+                <DropdownDivider />
+                <DropdownItem onClick={logOut}>Log out</DropdownItem>
+              </Dropdown>
+              :
+              <div className="flex gap-3">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'text-purple-600 font-bold dark:text-purple-400'
+                      : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:purple-blue-400'
+                  }
+                  to="/login"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'text-purple-600 font-bold dark:text-purple-400'
+                      : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:purple-blue-400'
+                  }
+                  to="/register"
+                >
+                  Register
+                </NavLink>
+              </div>
+          }
           <NavbarToggle className="ml-2" />
         </div>
         <NavbarCollapse>
@@ -78,6 +104,7 @@ const Navbar = () => {
             menus.map((menu => <NavLink
               key={menu.path}
               to={menu.path}
+
               className={({ isActive }) =>
                 isActive
                   ? 'text-purple-600 font-bold dark:text-purple-400'

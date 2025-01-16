@@ -10,7 +10,7 @@ const Register = () => {
     const navigate = useNavigate();
     const { createUser, setUser, signInWithGoogle, signInWithGitHub } = useAuth();
     const { uploadImage } = useImageUpload();
-
+    const [btnText, setbtnText] = useState("Register")
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -33,6 +33,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setbtnText('Registering...')
         if (!validatePassword(password)) {
             setPassError('Password must have at least one uppercase, one lowercase, and at least 6 characters.');
             return;
@@ -55,6 +56,8 @@ const Register = () => {
             setPassword('');
         } catch (error) {
             toast.error(error.message || 'Failed to Register. Please try again.');
+        }finally{
+            setbtnText('Register')
         }
     };
 
@@ -159,7 +162,7 @@ const Register = () => {
                                     type="submit"
                                     className="mt-5 tracking-wide font-semibold bg-purple-500 text-gray-100 w-full py-4 rounded-lg hover:bg-purple-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:outline-none">
                                     <MdPersonAdd />
-                                    <span className="ml-3">Register</span>
+                                    <span className="ml-3">{btnText}</span>
                                 </button>
                             </form>
                         </div>
