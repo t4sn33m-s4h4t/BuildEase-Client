@@ -34,40 +34,42 @@ export default function ManageMembers() {
   ];
 
   return (
-    <div className="overflow-x-auto mx-auto max-w-screen-lg p-4">
+    <div className="block">
       <Title Heading="Manage Members" />
-      <Table className="min-w-full table-auto">
-        <TableHead>
+      <div className="overflow-x-auto w-[85vw] max-w-2xl mx-auto p-0 md:p-3 lg:p-4">
+        <Table className="min-w-full  table-auto">
+          <TableHead>
             <TableHeadCell>User Name</TableHeadCell>
             <TableHeadCell>Email</TableHeadCell>
             <TableHeadCell>Role</TableHeadCell>
             <TableHeadCell>
               <span className="sr-only">Delete</span>
             </TableHeadCell>
-        </TableHead>
-        <TableBody className="divide-y">
-          {users.map((user) => (
-            <TableRow
-              key={user._id}
-              className="bg-white dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                {user.name}
-              </TableCell>
-              <TableCell className="text-gray-600 dark:text-gray-300">{user.email}</TableCell>
-              <TableCell className="text-gray-600 dark:text-gray-300">{user.role}</TableCell>
-              <TableCell>
-                <button
-                  onClick={() => deleteUser(user._id)} // Call the delete function
-                  className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300"
-                >
-                  Delete
-                </button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody className="divide-y">
+            {users.map((user) => (
+              <TableRow
+                key={user._id}
+                className="bg-white dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                  {user.name}
+                </TableCell>
+                <TableCell className="text-gray-600 dark:text-gray-300">{user.email}</TableCell>
+                <TableCell className="text-gray-600 dark:text-gray-300">{user.role}</TableCell>
+                <TableCell>
+                  <button
+                    onClick={() => deleteUser(user._id)} // Call the delete function
+                    className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300"
+                  >
+                    Delete
+                  </button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }

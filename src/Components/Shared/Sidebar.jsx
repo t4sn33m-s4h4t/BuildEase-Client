@@ -1,18 +1,32 @@
 import { useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
-import { FaBuilding, FaSearch } from "react-icons/fa";
 import { RiDashboardFill } from "react-icons/ri";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
     const [open, setOpen] = useState(true);
     const isAdmin = true;
-    const Menus = [
-        { title: isAdmin ? "Admin Profile" :"My Profile", path: isAdmin?'/dashboard/admin-profile':'/dashboard/profile' },
-        { title: "Manage Members", path: '/dashboard/manage-members' },
-        { title: "Make Announcements", path: isAdmin ? '/dashboard/make-announcements' :'/dashboard/announcements' },
-        // { title: "Media", spacing: true },  
+    const userMenu = [
+        { title: "My Profile", path: '/dashboard/profile' },
+        { title: "Announcements", path: '/dashboard/announcements' },
     ];
+    const memberMenu = [
+        { title: "My Profile", path: '/dashboard/profile' },
+        { title: "Make Payment", path: '/dashboard/make-payment' },
+        { title: "Payment History", path: '/dashboard/payment-history' },
+        { title: "Announcements", path: '/dashboard/announcements' },
+    ];
+    const adminMenu = [
+        { title: "Admin Profile", path: '/dashboard/profile' },
+        { title: "Manage Members", path: '/dashboard/manage-members' },
+        { title: "Make Announcements", path: '/dashboard/make-announcements' },
+        { title: "Agreement Requests", path: '/dashboard/agreement-requests' },
+        { title: "Manage Coupons", path: '/dashboard/manage-coupons' },
+        { title: "Announcements", path: '/dashboard/announcements', spacing: true },
+        { title: "Coupons", path: '/dashboard/coupons' },
+    ];
+    const Menus = adminMenu
+    // { title: "Media", spacing: true },  
     return (
         <div
             className={`fixed min-h-full top-0 z-30 bg-purple-950  md:p-5 p-1 pt-8 w-12 ${open ? "md:w-72" : "md:w-20"
@@ -30,7 +44,7 @@ const Sidebar = () => {
                 {
                     Menus.map((menu, i) => (
                         <>
-                            <hr className={` ${menu.spacing && 'mt-4'} duration-300 w-2/3 ${(menu.spacing && open) ? 'block' : 'hidden'}`} />
+                            <hr className={` ${menu.spacing && 'my-4'} duration-300 w-2/3 ${(menu.spacing && open) ? 'block' : 'hidden'}`} />
                             <NavLink
                                 to={menu?.path} key={i}
                                 className={({ isActive }) =>

@@ -50,7 +50,7 @@ const Navbar = () => {
 
   ]
   return (
-    <div className="px-1 md:px-20 lg:px-44 bg-slate-200 sticky top-0 z-50">
+    <div className="px-1 md:px-20 lg:px-44 bg-purple-200 sticky top-0 z-50">
       <Nv fluid rounded className="bg-transparent">
         <NavbarBrand as={Link} href="/">
           <img className="md:max-w-14 max-w-12 mr-1 md:mr-3" src={logo} alt="" />

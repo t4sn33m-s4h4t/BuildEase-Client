@@ -5,7 +5,7 @@ import logo from "../../assets/logo.png"
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 export default function Footer() {
   return (
-    <Ft className="px-1 md:px-20 lg:px-44 bg-slate-200" container>
+    <Ft className="px-1 md:px-20 lg:px-44 bg-purple-200" container>
       <div className="w-full text-center">
         <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
           <FooterBrand as={Link} href="/">

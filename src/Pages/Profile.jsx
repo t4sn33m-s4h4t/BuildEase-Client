@@ -40,7 +40,7 @@ export default function Profile() {
 
                     <div className="w-full text-center md:text-left mt-6 bg-white text-gray-800 rounded-lg p-1 md:p-6 shadow-inner">
                         <h6 className="mb-4 text-lg font-semibold text-purple-700">
-                            Agreement Details
+                            Apartment Informations
                         </h6>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <p>
