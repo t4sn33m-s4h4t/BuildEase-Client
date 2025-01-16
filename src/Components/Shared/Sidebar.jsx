@@ -9,7 +9,8 @@ const Sidebar = () => {
     const isAdmin = true;
     const Menus = [
         { title: isAdmin ? "Admin Profile" :"My Profile", path: isAdmin?'/dashboard/admin-profile':'/dashboard/profile' },
-        { title: "Announcements", path: isAdmin ? '/dashboard/admin-announcements' :'/dashboard/announcements' },
+        { title: "Manage Members", path: '/dashboard/manage-members' },
+        { title: "Make Announcements", path: isAdmin ? '/dashboard/make-announcements' :'/dashboard/announcements' },
         // { title: "Media", spacing: true },  
     ];
     return (

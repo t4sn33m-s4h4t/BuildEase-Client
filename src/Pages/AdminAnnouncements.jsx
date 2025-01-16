@@ -28,7 +28,7 @@ const AdminAnnouncements = () => {
     try {
       const response = await axiosSecure.post("/announcements", formData);
       toast.success("Announcement added successfully!");
-      navigate("/");
+      navigate("/dashboard/announcements");
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to add announcement.");
       console.error(error);
@@ -36,7 +36,7 @@ const AdminAnnouncements = () => {
   };
 
   return (
-    <div className="py-10">
+    <div className="py-10 ">
       <div className="max-w-4xl my-10 mx-auto p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
         <Title Heading="Add Announcement" />
         <form onSubmit={handleSubmit} className="space-y-6">

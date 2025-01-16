@@ -11,6 +11,7 @@ import Profile from "../Pages/Profile.jsx";
 import AdminProfile from "../Pages/AdminProfile.jsx";
 import Announcements from "../Pages/Announcements.jsx";
 import AdminAnnouncements from "../Pages/AdminAnnouncements.jsx";
+import ManageMembers from "../Pages/ManageMembers.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,8 +62,12 @@ const router = createBrowserRouter([
         element: <AdminProfile />
       },
       {
-        path: 'admin-announcements',
+        path: 'make-announcements',
         element: <AdminAnnouncements />
+      },
+      {
+        path: 'manage-members',
+        element: <ManageMembers />
       },
     ]
   }
