@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import useAxios from './useAxios';
+import useAxiosSecure from './useAxiosSecure';
 
 const useAgreementId = ( userEmail ) => {
-    const normalAxios = useAxios()
+    const secureAxios = useAxiosSecure()
     const {
         data,
         isLoading,
@@ -11,10 +11,10 @@ const useAgreementId = ( userEmail ) => {
         {
             queryKey: ["agreement", userEmail],
             queryFn: async () => {
-                const response = await normalAxios.get(`/agreement/${userEmail}`);
+                const response = await secureAxios.get(`/agreement/${userEmail}`);
                 return response.data;
             },
-
+            
         }
     )
     

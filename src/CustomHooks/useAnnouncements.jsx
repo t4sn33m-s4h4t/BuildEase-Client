@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import useAxios from './useAxios';
+import useAxiosSecure from './useAxiosSecure';
 
 const useAnnouncements = () => {
-  const normalAxios = useAxios()
+  const normalAxios = useAxiosSecure()
   const {
     data,
     isLoading,

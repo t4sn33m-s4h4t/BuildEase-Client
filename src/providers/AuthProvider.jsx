@@ -10,7 +10,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import auth from "../Utilites/firebase.config.js";
-import useAxiosSecure from "../CustomHooks/useAxiosSecure.jsx";
+import useAxios from "../CustomHooks/useAxios.jsx";
 
 export const AuthContext = createContext();
 
@@ -18,19 +18,36 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const axiosSecure = useAxiosSecure();
+  const noramlAxios = useAxios();
 
 
   async function registerUser(name, email) {
-  try {
-    const response = await axiosSecure.put("/register", { name, email });
-    if (response.data.token) {
-      localStorage.setItem("authToken", response.data.token); 
+    try {
+      const response = await noramlAxios.put("/register", { name, email });
+      if (response.data.token) {
+        localStorage.setItem("authToken", response.data.token);
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
     }
-  } catch (error) {
-    console.error("Error during registration:", error);
   }
-}
+
+  const signIn = async (email, password) => {
+    try {
+      setLoading(true);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const tokenResponse = await noramlAxios.post("/jwt", { email });
+      console.log(tokenResponse)
+      if (tokenResponse.data.token) {
+        localStorage.setItem("authToken", tokenResponse.data.token);
+      }
+      return userCredential.user;
+    } catch (error) {
+      throw new Error(`Failed to sign in: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const createUser = async (email, password, name, imageURL) => {
     try {
@@ -46,22 +63,6 @@ const AuthProvider = ({ children }) => {
       return newUser;
     } catch (error) {
       throw new Error(`Failed to create user: ${error.message}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const signIn = async (email, password) => {
-    try {
-      setLoading(true);
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const tokenResponse = await axiosSecure.post("/jwt", { email });
-      if (tokenResponse.data.token) {
-        localStorage.setItem("authToken", tokenResponse.data.token);
-      }
-      return userCredential.user;
-    } catch (error) {
-      throw new Error(`Failed to sign in: ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -87,7 +88,7 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
-  
+
   const signInWithGitHub = async () => {
     const provider = new GithubAuthProvider();
     try {
@@ -136,9 +137,9 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
-      axiosSecure
-        .post("/jwt", { token })
+      noramlAxios.post("/jwt", { token })
         .then((res) => {
+          
           setLoading(false);
         })
         .catch(() => {
@@ -148,13 +149,13 @@ const AuthProvider = ({ children }) => {
     } else {
       setLoading(false);
     }
-  
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
     return () => unsubscribe();
   }, []);
-  
+
 
   return (
     <AuthContext.Provider value={authInfo}>

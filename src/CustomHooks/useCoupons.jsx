@@ -1,27 +1,27 @@
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from './useAxiosSecure';
+import useAxios from './useAxios';
 
-const useUsers = () => {    
-  const normalAxios = useAxiosSecure() 
+const useCoupons = () => {    
+    const normalAxios = useAxios() 
   const {
     data,
     isLoading,
     refetch,
   } = useQuery(
    {
-    queryKey: ["users"],
+    queryKey: ["coupons"],
     queryFn: async () => {
-        const response = await normalAxios.get('/users');
+        const response = await normalAxios.get('/coupons');
         return response.data;
       },
     keepPreviousData: true,
 }
 )
   return {
-    users: data?.users || [],
+    coupons: data || [],
     isLoading,
     refetch,
   };
 };
 
-export default useUsers;
+export default useCoupons;

@@ -1,29 +1,7 @@
 import React from 'react';
 import { Card } from "flowbite-react";
-import useAxiosSecure from '../../CustomHooks/useAxiosSecure';
-import { useAuth } from '../../CustomHooks/useAuth'
 import { Link } from 'react-router-dom';
 const ApartmentCard = ({ apartment }) => {
-    const { user } = useAuth();
-    const axisoSecure = useAxiosSecure()
-    const handleSubmit = () => {
-        console.log(user)
-        axisoSecure.post("/apartments/agreement", agreement = {
-            userName: user.displayName,
-            userEmail: user.email,
-            floorNo: apartment.floorNo,
-            blockName: apartment.blockName,
-            apartmentNo: apartment.apartmentNo,
-            rent: apartment.rent,
-        })
-    }
-
-    // _id: 
-    // image: 
-    // floorNo: 
-    // blockName: 
-    // apartmentNo: 
-    // rent: 
     return (
         <Card className="mx-auto max-w-lg w-full shadow-lg rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
             <div className="relative">

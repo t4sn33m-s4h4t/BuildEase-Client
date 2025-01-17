@@ -52,7 +52,7 @@ const Navbar = () => {
   return (
     <div className="px-1 md:px-20 lg:px-44 bg-purple-200 sticky top-0 z-50">
       <Nv fluid rounded className="bg-transparent">
-        <NavbarBrand as={Link} href="/">
+        <NavbarBrand as={Link} to="/">
           <img className="md:max-w-14 max-w-12 mr-1 md:mr-3" src={logo} alt="" />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white ">BuildEase</span>
         </NavbarBrand>
@@ -74,7 +74,7 @@ const Navbar = () => {
                 <DropdownItem onClick={logOut}>Log out</DropdownItem>
               </Dropdown>
               :
-              <div className="flex gap-3">
+              <div className="flex items-center gap-3">
                 <NavLink
                   className={({ isActive }) =>
                     isActive

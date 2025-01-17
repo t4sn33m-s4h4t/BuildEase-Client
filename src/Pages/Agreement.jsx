@@ -8,10 +8,10 @@ import useApartmentId from "../CustomHooks/useApartmentId";
 import Title from "../Components/Shared/Title";
 
 import useAxiosSecure from "../CustomHooks/useAxiosSecure";
-import useAxios from "../CustomHooks/useAxios";
+
 
 const Agreement = () => {
-  const axiosSecure = useAxios()
+  const axiosSecure = useAxiosSecure()
 
   const navigate = useNavigate();
   const { id } = useParams()
@@ -46,7 +46,7 @@ const Agreement = () => {
     e.preventDefault();
 
     try {
-      console.log(formData)
+      
       const response = await axiosSecure.post("/apartments/agreement", formData)
       toast.success("Agreement added successfully!");
       navigate('/');

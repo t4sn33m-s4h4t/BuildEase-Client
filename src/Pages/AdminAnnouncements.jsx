@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Button, Label, TextInput, Textarea } from "flowbite-react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import useAxios from "../CustomHooks/useAxios";
+import useAxiosSecure from "../CustomHooks/useAxiosSecure";
 import Title from "../Components/Shared/Title";
 
 const AdminAnnouncements = () => {
-  const axiosSecure = useAxios();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({

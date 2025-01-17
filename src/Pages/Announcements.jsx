@@ -1,7 +1,7 @@
 import { HiInformationCircle } from 'react-icons/hi';
 import Title from '../Components/Shared/Title';
 import useAnnouncements from '../CustomHooks/useAnnouncements';
-import { Alert, Card } from 'flowbite-react';
+import { Alert } from 'flowbite-react';
 
 import { motion } from 'framer-motion';
 
@@ -23,17 +23,17 @@ const Announcements = () => {
               <Alert
                 color="purple"
                 icon={HiInformationCircle}
-                additionalContent={"=> " + announcement.description}
+                additionalContent={<p className='text-lg'>{"=> " + announcement.description}</p>}
                 rounded
                 className="mx-auto w-4/5 shadow-md hover:shadow-lg"
               >
-                <p className='text-lg'> <span className="font-medium">Announcement: </span>{announcement.title}</p>
+                <p className='text-xl lg:text-2xl'> {announcement.title}</p>
               </Alert>
             </motion.div>
             )}
         </div>
       ) : (
-        <p className="text-gray-500 text-center">No announcements available.</p>
+        <p className="text-gray-500 text-center ">No announcements available.</p>
       )}
     </div>
   )

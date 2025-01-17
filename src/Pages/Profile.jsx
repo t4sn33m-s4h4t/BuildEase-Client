@@ -5,7 +5,7 @@ import useAgreementId from '../CustomHooks/useAgreementId'
 export default function Profile() {
     const { user } = useAuth();
     const { agreement } = useAgreementId(user?.email)
-    console.log(agreement)
+    
     return (
         <>
             <Title Heading="My Profile" />
@@ -44,16 +44,16 @@ export default function Profile() {
                         </h6>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <p>
-                                <strong>Accept Date:</strong> <span className="text-gray-500">{!agreement?.floor && "N/A"}</span>
+                                <strong>Accept Date:</strong> <span className="text-gray-500">{!agreement?.requestDate ? "N/A" : (new Date(agreement?.requestDate).toLocaleDateString())}</span>
                             </p>
                             <p>
-                                <strong>Floor:</strong> <span className="text-gray-500">{!agreement?.floorNo && "N/A"}</span>
+                                <strong>Floor:</strong> <span className="text-gray-500">{!agreement?.floorNo ? "N/A" : agreement.floorNo}</span>
                             </p>
                             <p>
-                                <strong>Block:</strong> <span className="text-gray-500">{!agreement?.blockName && "N/A"}</span>
+                                <strong>Block:</strong> <span className="text-gray-500">{!agreement?.blockName ? "N/A" : agreement.blockName}</span>
                             </p>
                             <p>
-                                <strong>Room No:</strong> <span className="text-gray-500">{!agreement?.apartmentNo && "N/A"}</span>
+                                <strong>Room No:</strong> <span className="text-gray-500">{!agreement?.apartmentNo ? "N/A" : agreement.apartmentNo }</span>
                             </p>
                         </div>
                     </div>

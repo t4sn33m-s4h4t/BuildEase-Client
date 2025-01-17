@@ -12,6 +12,8 @@ import AdminProfile from "../Pages/AdminProfile.jsx";
 import Announcements from "../Pages/Announcements.jsx";
 import AdminAnnouncements from "../Pages/AdminAnnouncements.jsx";
 import ManageMembers from "../Pages/ManageMembers.jsx";
+import ManageCoupons from "../Pages/ManageCoupons.jsx";
+import AgreementRequests from "../Pages/AgreementRequests.jsx";
 import Coupons from "../Components/Home/Coupons.jsx";
 
 const router = createBrowserRouter([
@@ -73,6 +75,14 @@ const router = createBrowserRouter([
       {
         path: 'coupons',
         element: <Coupons />
+      },
+      {
+        path: 'manage-coupons',
+        element: <ManageCoupons />
+      },
+      {
+        path: 'agreement-requests',
+        element: <AgreementRequests />
       },
     ]
   }

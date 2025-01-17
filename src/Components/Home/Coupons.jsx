@@ -4,31 +4,10 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
 import Title from '../Shared/Title';
 import { motion } from 'framer-motion';
+import useCoupons from '../../CustomHooks/useCoupons';
 
 function Coupons() {
-    const coupons = [
-        {
-            code: 'SAVE20',
-            discount: '20%',
-            description: 'Get 20% off on all room bookings.',
-        },
-        {
-            code: 'FIRSTBOOK',
-            discount: '15%',
-            description: '15% discount on your first booking.',
-        },
-        {
-            code: 'FREEDAY',
-            discount: '1 Free Day',
-            description: 'Book 7 days and get 1 extra day free!',
-        },
-        {
-            code: 'CHEAPRENT',
-            discount: 'Flat $50',
-            description: 'Flat $50 off for a limited time.',
-        },
-    ];
-
+    const { coupons } = useCoupons()
     const [copiedCoupon, setCopiedCoupon] = useState('');
 
     const handleCopy = (code) => {
@@ -45,12 +24,14 @@ function Coupons() {
                     Subheading=" Grab the best deals and discounts for your next room booking."
                 />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {
+                    coupons?.length ? 
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {coupons.map((coupon, index) => (
 
                         <motion.Card
                             key={index}
-                            className="shadow-xl py-5 rounded dark:bg-gray-800 transition-transform transform hover:scale-105 hover:shadow-2xl"
+                            className="shadow-xl px-8 py-5 w-full rounded-xl dark:bg-gray-800 transition-transform transform hover:scale-105 hover:shadow-2xl"
                             initial={{ opacity: 0, y: 50 }} 
                             animate={{ opacity: 1, y: 0 }} 
                             transition={{ duration: 1, ease: [1, -0.2, 0.11, -0.6] }}
@@ -81,6 +62,9 @@ function Coupons() {
 
                     ))}
                 </div>
+                :
+                <p className="text-center text-xl font-bold text-gray-500">Currently No Coupons Available</p>
+                }
             </div>
         </section>
     );

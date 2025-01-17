@@ -1,49 +1,42 @@
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import Title from "../Components/Shared/Title";
-import useUsers from "../CustomHooks/useUsers.jsx"; // Import your custom hook
+import useUsers from "../CustomHooks/useUsers.jsx";
+import Loading from './Loading.jsx';
+import { toast } from "react-toastify";
+import useAxiosSecure from "../CustomHooks/useAxiosSecure.jsx";
 
 export default function ManageMembers() {
-  let { users, deleteUser } = useUsers(); // Assuming deleteUser is provided in your custom hook
+  const { users, isLoading, refetch } = useUsers();
+  const axiosSecure = useAxiosSecure()
+  const removeMember = async (userEmail) => {
+    try {
+      const response = await axiosSecure.put(`/users/${userEmail}`);
+      console.log(response)
+      if (response.status === 200) {
+        toast.success("User deleted successfully!");
+        refetch() 
+      } else {
+        toast.error("Failed to delete user. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      toast.error("An error occurred. Please try again.");
+    }
+  };
 
-  // Temporary hardcoded data for demonstration
-  users = [
-    {
-      name: "John Doe",
-      _id: "user1",
-      email: "john@example.com",
-      role: "Admin",
-    },
-    {
-      name: "Jane Smith",
-      _id: "user2",
-      email: "jane@example.com",
-      role: "Editor",
-    },
-    {
-      name: "Mark Johnson",
-      _id: "user3",
-      email: "mark@example.com",
-      role: "Viewer",
-    },
-    {
-      name: "Emily Davis",
-      _id: "user4",
-      email: "emily@example.com",
-      role: "Moderator",
-    },
-  ];
+  if (isLoading) return <Loading />;
 
   return (
     <div className="block">
       <Title Heading="Manage Members" />
       <div className="overflow-x-auto w-[85vw] max-w-2xl mx-auto p-0 md:p-3 lg:p-4">
-        <Table className="min-w-full  table-auto">
+        <Table className="min-w-full table-auto">
           <TableHead>
             <TableHeadCell>User Name</TableHeadCell>
             <TableHeadCell>Email</TableHeadCell>
             <TableHeadCell>Role</TableHeadCell>
             <TableHeadCell>
-              <span className="sr-only">Delete</span>
+             Remove
             </TableHeadCell>
           </TableHead>
           <TableBody className="divide-y">
@@ -59,10 +52,10 @@ export default function ManageMembers() {
                 <TableCell className="text-gray-600 dark:text-gray-300">{user.role}</TableCell>
                 <TableCell>
                   <button
-                    onClick={() => deleteUser(user._id)} // Call the delete function
+                    onClick={() => removeMember(user.email)} 
                     className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300"
                   >
-                    Delete
+                    Remove
                   </button>
                 </TableCell>
               </TableRow>
