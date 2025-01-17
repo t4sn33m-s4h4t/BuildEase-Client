@@ -2,17 +2,10 @@ import { Card, Badge } from "flowbite-react";
 import Title from '../Components/Shared/Title';
 import { useAuth } from "../CustomHooks/useAuth";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-
+import useStat from '../CustomHooks/useStat.jsx'
 export default function AdminProfile() {
     const { user } = useAuth();
-
-    const stats = {
-        totalRooms: 300,
-        availableRooms: 50,
-        users: 150,
-        members: 50,
-    };
-
+    const {stats} = useStat()
     const roomData = [
         { name: "Available Rooms", value: stats.availableRooms },
         { name: "Unavailable Rooms", value: stats.totalRooms - stats.availableRooms },
@@ -31,7 +24,7 @@ export default function AdminProfile() {
             <Title Heading="Admin Profile" />
             <Card className="max-w-xl mb-5 mx-auto bg-gradient-to-br from-purple-50 to-indigo-50 text-black shadow-xl">
                 <div className="flex flex-col items-center md:p-8 p-0">
-                
+
                     <div className="relative">
                         <img
                             alt="Admin profile"
@@ -60,16 +53,16 @@ export default function AdminProfile() {
                         </h6>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <p>
-                                <strong>No. of Rooms:</strong> <span className="text-gray-500">{!stats?.totalRooms ? "N/A" : stats.totalRooms}</span>
+                                <strong>No. of Rooms:</strong> <span className="text-gray-500">{!stats?.totalRooms ? "0" : stats.totalRooms}</span>
                             </p>
                             <p>
-                                <strong>Available Rooms:</strong> <span className="text-gray-500">{!stats?.availableRooms ? "N/A" : (100-(100*stats.availableRooms / stats.totalRooms)).toFixed(2)+'%'}</span>
+                                <strong>Available Rooms:</strong> <span className="text-gray-500">{!stats?.availableRooms ? "0" : (100 - (100 * stats.availableRooms / stats.totalRooms)).toFixed(2) + '%'}</span>
                             </p>
                             <p>
-                                <strong>No. of Users:</strong> <span className="text-gray-500">{!stats?.users ? "N/A" : stats.users}</span>
+                                <strong>No. of Users:</strong> <span className="text-gray-500">{!stats?.users ? "0" : stats.users}</span>
                             </p>
                             <p>
-                                <strong>No. of Members:</strong> <span className="text-gray-500">{!stats?.members ? "N/A" : stats.members}</span>
+                                <strong>No. of Members:</strong> <span className="text-gray-500">{!stats?.members ? "0" : stats.members}</span>
                             </p>
                         </div>
                     </div>
