@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import useAxios from './useAxios';
+import useAxiosSecure from './useAxiosSecure';
 
 const useAgreements = () => {    
-    const normalAxios = useAxios() 
+    const axiosSecure = useAxiosSecure() 
     
   const {
     data,
@@ -12,7 +12,7 @@ const useAgreements = () => {
    {
     queryKey: ["agreements"],
     queryFn: async () => {
-        const response = await normalAxios.get('/agreements');
+        const response = await axiosSecure.get('/agreements');
         return response.data;
       },
     keepPreviousData: true,

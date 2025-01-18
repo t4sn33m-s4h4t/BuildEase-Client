@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Root from "../Layout/Root";
 import DashboardLayout from "../Layout/DashboardLayout"
 import Error from '../Pages/Error'
@@ -15,7 +15,9 @@ import ManageMembers from "../Pages/ManageMembers.jsx";
 import ManageCoupons from "../Pages/ManageCoupons.jsx";
 import AgreementRequests from "../Pages/AgreementRequests.jsx";
 import Coupons from "../Components/Home/Coupons.jsx";
-
+import AdminProtectedRoute from "./AdminProtectedRoute.jsx";
+import SecureRoute from "./SecureRoute.jsx"
+import PrivateRoute from "./PrivateRoute.jsx"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,53 +38,53 @@ const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <Login />
+        element: <SecureRoute><Login /></SecureRoute>, 
       },
       {
         path: 'register',
-        element: <Register />
+        element: <SecureRoute><Register /></SecureRoute>, 
       },
     ]
   },
   {
     path: '/dashboard',
-    element: <DashboardLayout />,
+    element: <PrivateRoute> <DashboardLayout /></PrivateRoute>,
     children: [
       {
         path: '',
-        element: <Profile />,
+        element: <Navigate to="/dashboard/profile"/> ,
       },
       {
         path: 'profile',
         element: <Profile />,
       },
       {
-        path: 'announcements',
-        element: <Announcements />,
+        path: 'admin-profile',
+        element: <AdminProtectedRoute> <AdminProfile /> </AdminProtectedRoute>
       },
       {
-        path: 'admin-profile',
-        element: <AdminProfile />
+        path: 'announcements',
+        element:  <Announcements />,
       },
       {
         path: 'make-announcements',
-        element: <AdminAnnouncements />
+        element: <AdminProtectedRoute> <AdminAnnouncements /> </AdminProtectedRoute>,
       },
       {
         path: 'manage-members',
-        element: <ManageMembers />
+        element: <AdminProtectedRoute> <ManageMembers /> </AdminProtectedRoute>,
       },
       {
         path: 'coupons',
-        element: <Coupons />
+        element: <Coupons /> ,
       },
       {
         path: 'manage-coupons',
-        element: <ManageCoupons />
+        element: <AdminProtectedRoute> <ManageCoupons /> </AdminProtectedRoute>,
       },
       {
         path: 'agreement-requests',
-        element: <AgreementRequests />
+        element: <AdminProtectedRoute> <AgreementRequests /> </AdminProtectedRoute>,
       },
     ]
   }

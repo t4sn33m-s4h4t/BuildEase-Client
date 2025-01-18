@@ -11,7 +11,13 @@ const useAgreementId = ( userEmail ) => {
         {
             queryKey: ["agreement", userEmail],
             queryFn: async () => {
-                const response = await secureAxios.get(`/agreement/${userEmail}`);
+                const response = await secureAxios.get(`/agreement/${userEmail}`,
+                    {
+                        params: {
+                            email: userEmail
+                        }
+                    }
+                );
                 return response.data;
             },
             

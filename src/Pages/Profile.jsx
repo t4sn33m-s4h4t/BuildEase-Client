@@ -2,7 +2,7 @@ import { Card, Badge } from "flowbite-react";
 import Title from '../Components/Shared/Title';
 import { useAuth } from "../CustomHooks/useAuth";
 import useAgreementId from '../CustomHooks/useAgreementId'
-export default function Profile() {
+export default function UserProfile() {
     const { user } = useAuth();
     const { agreement } = useAgreementId(user?.email)
     

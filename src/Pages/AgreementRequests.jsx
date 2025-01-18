@@ -27,7 +27,6 @@ export default function AgreementRequests() {
     const handleReject = async (id) => {
         try {
             const response = await axiosSecure.put(`/agreement/${id}`, { action: "reject" });
-            console.log(response.data.message);
             toast.success("Agreement rejected successfully!")
             refetch()
         } catch (error) {
@@ -38,7 +37,7 @@ export default function AgreementRequests() {
     return (
         <div className="block">
             <Title Heading="Agreement Requests" />
-            <div className="overflow-x-auto w-[85vw] max-w-screen-lg mx-auto p-0 md:p-3 lg:p-4">
+            <div className="overflow-x-auto lg:w-[85vw] md:w-[60vw] lg:max-w-3xl md:max-w-lg mx-auto p-0 md:p-3 lg:p-4">
                 <Table className="min-w-full table-auto">
                     <TableHead>
                         <TableHeadCell>User Name</TableHeadCell>

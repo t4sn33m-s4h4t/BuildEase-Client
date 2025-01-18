@@ -51,7 +51,7 @@ export default function ManageCoupons() {
 
     if (isLoading) return <Loading />
     return (
-        <div className="block">
+        <div className="block ">
             <Modal
             handleSubmit={handleSubmit} 
             setOpenModal={setOpenModal} 
@@ -65,7 +65,7 @@ export default function ManageCoupons() {
                 <Button onClick={() => setOpenModal(true)} className="bg-purple-700 mx-auto mb-10">Add Coupon</Button>
             {
                 coupons?.length ? 
-                <div className="overflow-x-auto w-[85vw] max-w-3xl mx-auto p-0 md:p-3 lg:p-4">
+                <div className="overflow-x-auto lg:w-[85vw] md:w-[60vw] lg:max-w-3xl md:max-w-lg mx-auto p-0 md:p-3 lg:p-4">
                 <Table className="min-w-full table-auto">
                     <TableHead>
                         <TableHeadCell>Title</TableHeadCell>

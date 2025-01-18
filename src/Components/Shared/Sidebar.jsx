@@ -2,22 +2,23 @@ import { useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { RiDashboardFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
+import useCheckAdmin from "../../CustomHooks/useCheckAdmin";
 
 const Sidebar = () => {
     const [open, setOpen] = useState(true);
-    const isAdmin = true;
+    const {data, isLoading} = useCheckAdmin()
     const userMenu = [
         { title: "My Profile", path: '/dashboard/profile' },
         { title: "Announcements", path: '/dashboard/announcements' },
     ];
     const memberMenu = [
         { title: "My Profile", path: '/dashboard/profile' },
-        { title: "Make Payment", path: '/dashboard/make-payment' },
-        { title: "Payment History", path: '/dashboard/payment-history' },
         { title: "Announcements", path: '/dashboard/announcements' },
+        { title: "Make Payment", path: '/dashboard/make-payment', spacing: true},
+        { title: "Payment History", path: '/dashboard/payment-history' },
     ];
     const adminMenu = [
-        { title: "Admin Profile", path: '/dashboard/profile' },
+        { title: "Admin Profile", path: '/dashboard/admin-profile' },
         { title: "Manage Members", path: '/dashboard/manage-members' },
         { title: "Make Announcements", path: '/dashboard/make-announcements' },
         { title: "Agreement Requests", path: '/dashboard/agreement-requests' },
@@ -25,8 +26,8 @@ const Sidebar = () => {
         { title: "Announcements", path: '/dashboard/announcements', spacing: true },
         { title: "Coupons", path: '/dashboard/coupons' },
     ];
-    const Menus = adminMenu
-    // { title: "Media", spacing: true },  
+    const Menus = (data?.userRole === 'admin') ? adminMenu : data?.userRole==='member' ? memberMenu : userMenu ;
+    
     return (
         <div
             className={`fixed min-h-full top-0 z-30 bg-purple-950  md:p-5 p-1 pt-8 w-12 ${open ? "md:w-72" : "md:w-20"
@@ -44,7 +45,7 @@ const Sidebar = () => {
                 {
                     Menus.map((menu, i) => (
                         <>
-                            <hr className={` ${menu.spacing && 'my-4'} duration-300 w-2/3 ${(menu.spacing && open) ? 'block' : 'hidden'}`} />
+                            <hr className={` ${menu.spacing && 'my-4'} mx-auto duration-300 w-2/3 ${(menu.spacing && open) ? 'block' : 'hidden'}`} />
                             <NavLink
                                 to={menu?.path} key={i}
                                 className={({ isActive }) =>

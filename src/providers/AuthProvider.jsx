@@ -1,3 +1,4 @@
+
 import { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
@@ -11,7 +12,6 @@ import {
 } from "firebase/auth";
 import auth from "../Utilites/firebase.config.js";
 import useAxios from "../CustomHooks/useAxios.jsx";
-
 export const AuthContext = createContext();
 
 
@@ -133,25 +133,22 @@ const AuthProvider = ({ children }) => {
     signOutUser,
     loading,
   };
-
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      noramlAxios.post("/jwt", { token })
-        .then((res) => {
-          
-          setLoading(false);
-        })
-        .catch(() => {
-          localStorage.removeItem("authToken");
-          setLoading(false);
-        });
-    } else {
-      setLoading(false);
-    }
 
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setLoading(true)
       setUser(currentUser);
+      if (currentUser?.email) {
+        const user = { email: currentUser.email };
+        const response = await noramlAxios.post(`/jwt`, user)
+        if (response.data.token) {
+          localStorage.setItem("authToken", response?.data?.token);
+        }
+        setLoading(false)
+      } else {
+        localStorage.removeItem("authToken" );
+        setLoading(false)
+      }
     });
     return () => unsubscribe();
   }, []);

@@ -1,6 +1,6 @@
 import { Card, Badge } from "flowbite-react";
-import Title from '../Components/Shared/Title';
-import { useAuth } from "../CustomHooks/useAuth";
+import Title from '../Components/Shared/Title.jsx';
+import { useAuth } from "../CustomHooks/useAuth.jsx";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import useStat from '../CustomHooks/useStat.jsx'
 export default function AdminProfile() {

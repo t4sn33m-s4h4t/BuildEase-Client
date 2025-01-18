@@ -8,13 +8,13 @@ import useAxiosSecure from "../CustomHooks/useAxiosSecure.jsx";
 export default function ManageMembers() {
   const { users, isLoading, refetch } = useUsers();
   const axiosSecure = useAxiosSecure()
-  const removeMember = async (userEmail) => {
+  const removeMember = async (email, name) => {
     try {
-      const response = await axiosSecure.put(`/users/${userEmail}`);
-      console.log(response)
+      const response = await axiosSecure.put(`/users/${email}`);
       if (response.status === 200) {
         toast.success("User deleted successfully!");
-        refetch() 
+        refetch()
+        await axiosSecure.post("/announcements", {title: `${name} is Removed from our Building`, description: `${name} is no longer a member now.`});
       } else {
         toast.error("Failed to delete user. Please try again.");
       }
@@ -27,16 +27,16 @@ export default function ManageMembers() {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="block">
+    <div className="block ">
       <Title Heading="Manage Members" />
-      <div className="overflow-x-auto w-[85vw] max-w-2xl mx-auto p-0 md:p-3 lg:p-4">
+      <div className="overflow-x-auto lg:w-[85vw] md:w-[60vw] lg:max-w-3xl md:max-w-lg mx-auto p-0 md:p-3 lg:p-4">
         <Table className="min-w-full table-auto">
           <TableHead>
             <TableHeadCell>User Name</TableHeadCell>
             <TableHeadCell>Email</TableHeadCell>
             <TableHeadCell>Role</TableHeadCell>
             <TableHeadCell>
-             Remove
+              Remove
             </TableHeadCell>
           </TableHead>
           <TableBody className="divide-y">
@@ -52,7 +52,7 @@ export default function ManageMembers() {
                 <TableCell className="text-gray-600 dark:text-gray-300">{user.role}</TableCell>
                 <TableCell>
                   <button
-                    onClick={() => removeMember(user.email)} 
+                    onClick={() => removeMember(user.email, user.name)}
                     className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300"
                   >
                     Remove

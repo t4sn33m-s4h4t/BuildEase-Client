@@ -29,7 +29,7 @@ function Coupons() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {coupons.map((coupon, index) => (
 
-                        <motion.Card
+                        <motion.div
                             key={index}
                             className="shadow-xl px-8 py-5 w-full rounded-xl dark:bg-gray-800 transition-transform transform hover:scale-105 hover:shadow-2xl"
                             initial={{ opacity: 0, y: 50 }} 
@@ -58,7 +58,7 @@ function Coupons() {
                                     </Button>
                                 </CopyToClipboard>
                             </div>
-                        </motion.Card>
+                        </motion.div>
 
                     ))}
                 </div>

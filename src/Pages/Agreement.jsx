@@ -44,9 +44,7 @@ const Agreement = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      
       const response = await axiosSecure.post("/apartments/agreement", formData)
       toast.success("Agreement added successfully!");
       navigate('/');

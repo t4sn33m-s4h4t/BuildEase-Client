@@ -40,7 +40,7 @@ const AdminAnnouncements = () => {
       <div className="max-w-4xl my-10 mx-auto p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
         <Title Heading="Add Announcement" />
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Title Input */}
+
           <div>
             <Label value="Announcement Title" className="mb-2" />
             <TextInput
