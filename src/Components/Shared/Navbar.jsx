@@ -7,14 +7,18 @@ import {
   Navbar as Nv,
   NavbarBrand,
   NavbarCollapse,
-
+  
   NavbarToggle,
 } from "flowbite-react";
 import logo from '../../assets/logo.png'
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { FaHome, FaBuilding } from 'react-icons/fa';
 import { useAuth } from "../../CustomHooks/useAuth";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { FaUserCircle } from "react-icons/fa";
+import { BiLogInCircle } from "react-icons/bi";
+import { IoLogInSharp } from "react-icons/io5";
 
 
 
@@ -38,17 +42,22 @@ const Navbar = () => {
       toast.error('Error logging out:', error.message);
     }
   }
+
   const menus = [
     {
       name: "Home",
-      path: "/"
+      path: "/",
+      icon: <FaHome />
     },
     {
       name: "Apartment",
-      path: "/apartment"
+      path: "/apartment",
+      icon: <FaBuilding />
     }
-
-  ]
+  ];
+  
+  
+  const [isImageError, setIsImageError] = useState(false);
   return (
     <div className="px-1 md:px-20 lg:px-44 bg-purple-200 sticky top-0 z-50">
       <Nv fluid rounded className="bg-transparent">
@@ -63,7 +72,18 @@ const Navbar = () => {
                 arrowIcon={false}
                 inline
                 label={
-                  <Avatar alt="User settings" img={imgSrc} rounded />
+                  isImageError ? (
+                    <FaUserCircle size={55} className="text-gray-400" />
+                  ) : (
+                    <img
+                      alt="User profile"
+                      height="55"
+                      width="55"
+                      src={user?.photoURL || "https://via.placeholder.com/120"}
+                      className="rounded-full border-4 border-white shadow-md"
+                      onError={() => setIsImageError(true)}
+                    />
+                  )
                 }
               >
                 <DropdownHeader>
@@ -83,7 +103,8 @@ const Navbar = () => {
                   }
                   to="/login"
                 >
-                  Login
+                 <div className="flex items-center gap-2"> <span><BiLogInCircle /></span>
+                 <span>Login</span></div>
                 </NavLink>
                 <NavLink
                   className={({ isActive }) =>
@@ -93,7 +114,8 @@ const Navbar = () => {
                   }
                   to="/register"
                 >
-                  Register
+                   <div className="flex items-center gap-2"> <span><IoLogInSharp /></span>
+                   <span>Register</span></div>
                 </NavLink>
               </div>
           }
@@ -111,7 +133,8 @@ const Navbar = () => {
                   : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:purple-blue-400'
               }
             >
-              {menu.name}
+               <div className="flex items-center gap-2"> <span>{menu.icon}</span>
+               <span>{menu.name}</span></div>
             </NavLink>
 
             ))
@@ -120,8 +143,8 @@ const Navbar = () => {
 
         </NavbarCollapse>
 
-      </Nv>
-    </div>
+      </Nv >
+    </div >
   )
 }
 

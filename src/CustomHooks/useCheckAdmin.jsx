@@ -7,7 +7,6 @@ const useCheckAdmin = () => {
     const { user } = useAuth()
     const {data,isLoading} = useQuery({
             queryKey: ["userRole", user?.email],
-            retry: false,
             queryFn: async () => {
                 const response = await axiosSecure.get('/userRole', {
                     params: { email: user?.email }

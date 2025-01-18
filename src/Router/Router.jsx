@@ -1,12 +1,15 @@
+
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Root from "../Layout/Root";
 import DashboardLayout from "../Layout/DashboardLayout"
 import Error from '../Pages/Error'
 import Home from '../Pages/Home.jsx'
+import MakePayment from '../Pages/MakePayment.jsx'
 import Apartment from '../Pages/Apartment'
 import Login from "../Pages/Login.jsx";
 import Register from "../Pages/Register.jsx";
 import Agreement from "../Pages/Agreement.jsx";
+import PaymentHistory from '../Pages/PaymentHistory.jsx'
 import Profile from "../Pages/Profile.jsx";
 import AdminProfile from "../Pages/AdminProfile.jsx";
 import Announcements from "../Pages/Announcements.jsx";
@@ -86,6 +89,14 @@ const router = createBrowserRouter([
         path: 'agreement-requests',
         element: <AdminProtectedRoute> <AgreementRequests /> </AdminProtectedRoute>,
       },
+      {
+        path: 'make-payment',
+        element: <MakePayment />
+      },
+      {
+        path: 'payment-history',
+        element: <PaymentHistory />
+      }
     ]
   }
 ]);

@@ -89,7 +89,7 @@ const Login = () => {
                                     <div className="bg-white p-2 rounded-full">
                                         <FaGoogle />
                                     </div>
-                                    <span className="ml-4">Sign Up with Google</span>
+                                    <span className="ml-4">Login with Google</span>
                                 </button>
 
                                 <button
@@ -99,13 +99,13 @@ const Login = () => {
                                     <div className="bg-white p-2 rounded-full">
                                         <FaGithub />
                                     </div>
-                                    <span className="ml-4">Sign Up with GitHub</span>
+                                    <span className="ml-4">Login with GitHub</span>
                                 </button>
                             </div>
 
                             <div className="my-6 border-b text-center">
                                 <div className="leading-none px-2 inline-block text-sm tracking-wide font-medium bg-white transform translate-y-1/2 text-purple-700">
-                                    <Link to='/Login'>Don't Have An Account?</Link>
+                                    <Link to='/register'>Don't Have An Account?</Link>
                                 </div>
                             </div>
 

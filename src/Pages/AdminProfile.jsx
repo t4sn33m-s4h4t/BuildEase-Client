@@ -3,9 +3,13 @@ import Title from '../Components/Shared/Title.jsx';
 import { useAuth } from "../CustomHooks/useAuth.jsx";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import useStat from '../CustomHooks/useStat.jsx'
+import { FaUserCircle } from "react-icons/fa";
+import { useState } from "react";
 export default function AdminProfile() {
     const { user } = useAuth();
-    const {stats} = useStat()
+    const { stats } = useStat()
+    const [isImageError, setIsImageError] = useState(false);
+
     const roomData = [
         { name: "Available Rooms", value: stats.availableRooms },
         { name: "Unavailable Rooms", value: stats.totalRooms - stats.availableRooms },
@@ -26,13 +30,18 @@ export default function AdminProfile() {
                 <div className="flex flex-col items-center md:p-8 p-0">
 
                     <div className="relative">
-                        <img
-                            alt="Admin profile"
-                            height="140"
-                            src={user?.photoURL || "https://via.placeholder.com/140"}
-                            width="140"
-                            className="rounded-full border-4 border-white shadow-md"
-                        />
+                        {isImageError ? (
+                            <FaUserCircle size={120} className="text-gray-400" />
+                        ) : (
+                            <img
+                                alt="User profile"
+                                height="120"
+                                width="120"
+                                src={user?.photoURL || "https://via.placeholder.com/120"}
+                                className="rounded-full border-4 border-white shadow-md"
+                                onError={() => setIsImageError(true)}
+                            />
+                        )}
                         <Badge
                             color="success"
                             className="absolute -bottom-2 right-0"

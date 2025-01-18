@@ -1,31 +1,35 @@
 import { useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { RiDashboardFill } from "react-icons/ri";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useCheckAdmin from "../../CustomHooks/useCheckAdmin";
-
+import { FaUser, FaBullhorn, FaMoneyCheckAlt, FaHistory, FaUserShield, FaUsers, FaFileContract } from "react-icons/fa";
+import { MdPayment, MdAnnouncement, MdCardGiftcard } from "react-icons/md";
+import logo from "../../assets/logo.png";
 const Sidebar = () => {
     const [open, setOpen] = useState(true);
     const {data, isLoading} = useCheckAdmin()
     const userMenu = [
-        { title: "My Profile", path: '/dashboard/profile' },
-        { title: "Announcements", path: '/dashboard/announcements' },
-    ];
-    const memberMenu = [
-        { title: "My Profile", path: '/dashboard/profile' },
-        { title: "Announcements", path: '/dashboard/announcements' },
-        { title: "Make Payment", path: '/dashboard/make-payment', spacing: true},
-        { title: "Payment History", path: '/dashboard/payment-history' },
-    ];
-    const adminMenu = [
-        { title: "Admin Profile", path: '/dashboard/admin-profile' },
-        { title: "Manage Members", path: '/dashboard/manage-members' },
-        { title: "Make Announcements", path: '/dashboard/make-announcements' },
-        { title: "Agreement Requests", path: '/dashboard/agreement-requests' },
-        { title: "Manage Coupons", path: '/dashboard/manage-coupons' },
-        { title: "Announcements", path: '/dashboard/announcements', spacing: true },
-        { title: "Coupons", path: '/dashboard/coupons' },
-    ];
+        { title: "My Profile", path: '/dashboard/profile', icon: <FaUser /> },
+        { title: "Announcements", path: '/dashboard/announcements', icon: <FaBullhorn /> },
+      ];
+      
+      const memberMenu = [
+        { title: "My Profile", path: '/dashboard/profile', icon: <FaUser /> },
+        { title: "Announcements", path: '/dashboard/announcements', icon: <FaBullhorn /> },
+        { title: "Make Payment", path: '/dashboard/make-payment', icon: <MdPayment />, spacing: true },
+        { title: "Payment History", path: '/dashboard/payment-history', icon: <FaHistory /> },
+      ];
+      
+      const adminMenu = [
+        { title: "Admin Profile", path: '/dashboard/admin-profile', icon: <FaUserShield /> },
+        { title: "Manage Members", path: '/dashboard/manage-members', icon: <FaUsers /> },
+        { title: "Make Announcements", path: '/dashboard/make-announcements', icon: <MdAnnouncement /> },
+        { title: "Agreement Requests", path: '/dashboard/agreement-requests', icon: <FaFileContract /> },
+        { title: "Manage Coupons", path: '/dashboard/manage-coupons', icon: <MdCardGiftcard /> },
+        { title: "Announcements", path: '/dashboard/announcements', icon: <FaBullhorn />, spacing: true },
+        { title: "Coupons", path: '/dashboard/coupons', icon: <FaMoneyCheckAlt /> },
+      ];
     const Menus = (data?.userRole === 'admin') ? adminMenu : data?.userRole==='member' ? memberMenu : userMenu ;
     
     return (
@@ -38,10 +42,12 @@ const Sidebar = () => {
                     }`}
                 onClick={() => setOpen(!open)}
             />
-            <h2 className={`mb-3 rubik-dirt-regular text-3xl font-bold text-dark text-center hidden ${!open ? 'md:hidden' : "md:block"} text-white`}>
+            <Link to="/dashboard" className={`mb-3 rubik-dirt-regular text-3xl font-bold text-dark text-center hidden ${!open ? 'md:hidden' : "md:block"} text-white`}>
                 Dashboard
-            </h2>
-            <div className="mt-12">
+            </Link>
+            <Link to="/dashboard"><img className={`mb-3 text-center bg-purple-50 rounded ${open && "md:hidden"}`} src={logo} alt="" />
+            </Link>
+            <div className="mt-10">
                 {
                     Menus.map((menu, i) => (
                         <>
@@ -54,7 +60,7 @@ const Sidebar = () => {
                                 }
                             >
                                 <span>
-                                    <RiDashboardFill />
+                                    {menu.icon}
                                 </span>
                                 <span className={`text-base font-medium flex-1 scale-0 ${!open ? "md:scale-0" : "md:scale-100"} duration-300`}>
                                     {menu.title}

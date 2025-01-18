@@ -49,7 +49,7 @@ const Agreement = () => {
       toast.success("Agreement added successfully!");
       navigate('/');
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message);
       console.error(error);
     }
   };
@@ -130,6 +130,18 @@ const Agreement = () => {
                 name="rent"
                 type="text"
                 value={formData.rent+"$"}
+                readOnly
+                disabled
+              />
+            </div>
+
+
+            <div>
+              <Label value="Status" className="mb-2" />
+              <TextInput
+                name="Status"
+                type="text"
+                value="Pending"
                 readOnly
                 disabled
               />
