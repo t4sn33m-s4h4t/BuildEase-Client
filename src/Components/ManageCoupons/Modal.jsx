@@ -35,7 +35,7 @@ export default function Modal({
                             <div className="mb-2 block">
                                 <Label htmlFor="coupon-percentage" value="Coupon Percentage" />
                             </div>
-                            <TextInput id="coupon-percentage" ref={percentageInput} required />
+                            <TextInput type="number" id="coupon-percentage" ref={percentageInput} required />
                         </div>
                         <div>
                             <div className="mb-2 block">
