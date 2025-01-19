@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const CheckoutForm = ({coupon, paymentData, setPaymentData }) => {
+const CheckoutForm = ({ coupon, paymentData, setPaymentData }) => {
     const [btnText, setBtntext] = useState("Pay Now")
     const [month, setMonth] = useState("")
     const [clientSecret, setClientSecret] = useState('')
@@ -46,15 +46,15 @@ const CheckoutForm = ({coupon, paymentData, setPaymentData }) => {
 
         if (paymentIntent?.status === "succeeded") {
             const paymentDetails = {
-                email: user?.email, 
+                email: user?.email,
                 amount: paymentIntent.amount,
                 paymentId: paymentIntent.id,
-                date: new Date().toISOString(), 
+                date: new Date().toISOString(),
                 status: "succeeded"
             };
-        
+
             try {
-                const res = await axiosSecure.post('/payment-history', {...paymentDetails, month});
+                const res = await axiosSecure.post('/payment-history', { ...paymentDetails, month });
                 toast.success("Payment Success!");
                 navigate('/dashboard/payment-history');
             } catch (error) {
@@ -86,8 +86,32 @@ const CheckoutForm = ({coupon, paymentData, setPaymentData }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="col-span-2 sm:col-span-1 mb-10">
+                <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-900">Member Email</label>
+                <input id="email" readOnly disabled value={user.email} className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"></input>
+            </div>
+            <div className="flex flex-col md:flex-row justify-between gap-0 md:gap-5">
+                <div className="col-span-2 sm:col-span-1 mb-10 w-full">
+                    <label htmlFor="floor" className="mb-2 block text-sm font-medium text-gray-900">Floor No</label>
+                    <input id="floor" readOnly disabled value={paymentData?.agreement?.floorNo} className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"></input>
+                </div>
+                <div className="col-span-2 sm:col-span-1 mb-10 w-full">
+                    <label htmlFor="Block" className="mb-2 block text-sm font-medium text-gray-900">Block Name</label>
+                    <input id="Block" readOnly disabled value={paymentData?.agreement?.blockName} className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"></input>
+                </div>
+            </div>
+            <div className="flex flex-col md:flex-row justify-between gap-0 md:gap-5">
+                <div className="col-span-2 sm:col-span-1 mb-10 w-full">
+                    <label htmlFor="apartmentNo" className="mb-2 block text-sm font-medium text-gray-900">Apartment No</label>
+                    <input id="apartmentNo" readOnly disabled value={paymentData?.agreement?.apartmentNo} className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"></input>
+                </div>
+                <div className="col-span-2 sm:col-span-1 mb-10 w-full">
+                    <label htmlFor="apartmentNo" className="mb-2 block text-sm font-medium text-gray-900">Rent</label>
+                    <input id="apartmentNo" readOnly disabled value={paymentData?.agreement?.rent} className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"></input>
+                </div>
+            </div>
+            <div className="col-span-2 sm:col-span-1 mb-10">
                 <label htmlFor="month" className="mb-2 block text-sm font-medium text-gray-900">Month*</label>
-                <select onChange={(e)=>setMonth(e.target.value)} id="month" required className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500">
+                <select onChange={(e) => setMonth(e.target.value)} id="month" required className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500">
                     <option value="">Select Month</option>
                     <option value="January">January</option>
                     <option value="February">February</option>
