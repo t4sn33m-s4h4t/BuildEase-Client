@@ -1,7 +1,3 @@
-
-import Loading from '../../Pages/Loading'
-import React, { useEffect, useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import useAxiosSecure from '../../CustomHooks/useAxiosSecure';
 import { useAuth } from '../../CustomHooks/useAuth';

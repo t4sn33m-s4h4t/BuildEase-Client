@@ -3,7 +3,6 @@ import Title from "../Components/Shared/Title";
 import useCoupons from "../CustomHooks/useCoupons.jsx";
 import { useRef, useState } from "react";
 import Modal from "../Components/ManageCoupons/Modal.jsx";
-import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../CustomHooks/useAxiosSecure.jsx";
 import { toast } from "react-toastify";
 import Loading from "./Loading.jsx";

@@ -1,5 +1,4 @@
-import { Button, Checkbox, Label, Modal as ML, TextInput } from "flowbite-react";
-import { useRef, useState } from "react";
+import { Button, Label, Modal as ML, TextInput } from "flowbite-react";
 
 export default function Modal({
     titleInput,

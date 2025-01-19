@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
-import { RiDashboardFill } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
 import useCheckAdmin from "../../CustomHooks/useCheckAdmin";
 import { FaUser, FaBullhorn, FaMoneyCheckAlt, FaHistory, FaUserShield, FaUsers, FaFileContract } from "react-icons/fa";
@@ -8,7 +7,7 @@ import { MdPayment, MdAnnouncement, MdCardGiftcard } from "react-icons/md";
 import logo from "../../assets/logo.png";
 const Sidebar = () => {
     const [open, setOpen] = useState(true);
-    const {data, isLoading} = useCheckAdmin()
+    const {data} = useCheckAdmin()
     const userMenu = [
         { title: "My Profile", path: '/dashboard/profile', icon: <FaUser /> },
         { title: "Announcements", path: '/dashboard/announcements', icon: <FaBullhorn /> },

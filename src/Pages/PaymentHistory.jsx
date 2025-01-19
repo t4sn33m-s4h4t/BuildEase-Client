@@ -1,20 +1,11 @@
-import React from 'react'
 import usePaymentHistory from "../CustomHooks/usePaymentHistory"
-import { useAuth } from '../CustomHooks/useAuth'
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from 'flowbite-react'
 import Title from "../Components/Shared/Title"
 const PaymentHistory = () => {
   const {payments} = usePaymentHistory()
-  const {user} = useAuth()
-  
-
-  
   return (
     <div className="block ">
-
-
             <Title Heading="Payment History" />
-             
               {
                 payments?.length ? 
                 <div className="overflow-x-auto lg:w-[85vw] md:w-[60vw] lg:max-w-3xl md:max-w-lg mx-auto p-0 md:p-3 lg:p-4">
@@ -35,8 +26,6 @@ const PaymentHistory = () => {
                                 </TableCell>
                                 <TableCell className="text-gray-600 dark:text-gray-300">{payment.amount/100}</TableCell>
                                 <TableCell className="text-gray-600 dark:text-gray-300">{new Date(payment.date).toLocaleDateString()}</TableCell>
-
-                                
                             </TableRow>
                         ))}
                     </TableBody>

@@ -2,7 +2,6 @@ import { HiInformationCircle } from 'react-icons/hi';
 import Title from '../Components/Shared/Title';
 import useAnnouncements from '../CustomHooks/useAnnouncements';
 import { Alert } from 'flowbite-react';
-
 import { motion } from 'framer-motion';
 
 const Announcements = () => {
