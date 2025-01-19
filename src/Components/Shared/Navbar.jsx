@@ -63,7 +63,7 @@ const Navbar = () => {
       <Nv fluid rounded className="bg-transparent">
         <NavbarBrand as={Link} to="/">
           <img className="md:max-w-14 max-w-12 mr-1 md:mr-3" src={logo} alt="" />
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white ">BuildEase</span>
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white hidden md:block">BuildEase</span>
         </NavbarBrand>
         <div className="flex md:order-2">
           {
