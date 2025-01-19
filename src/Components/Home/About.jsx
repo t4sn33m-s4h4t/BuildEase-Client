@@ -6,7 +6,7 @@ function About() {
     <section className="py-2 ">
       <div className="container mx-auto px-6 lg:px-12">
         <Title 
-          Heading="About BuildEase" 
+          Heading="About The Building" 
           Subheading="Your all-in-one platform for building management and affordable online room rentals."
         />
 
