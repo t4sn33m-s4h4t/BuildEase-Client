@@ -17,7 +17,7 @@ export default function ManageCoupons() {
     const percentageInput = useRef(null);
     const codeInput = useRef(null);
     
-    const noramlAxios = useAxiosSecure()
+    const axiosSecure = useAxiosSecure()
     const handleSubmit=async (e)=>{
         e.preventDefault();
         const Coupon = {
@@ -28,7 +28,7 @@ export default function ManageCoupons() {
         }
         setOpenModal(false)
         try {
-            const res = await noramlAxios.post('/coupons', Coupon)
+            const res = await axiosSecure.post('/coupons', Coupon)
             toast.success("Coupon Added Successfully")
             refetch()
         } catch (error) {
@@ -38,9 +38,19 @@ export default function ManageCoupons() {
 
         
     }
+    const expireCoupon=async(id)=>{
+        try {
+            const req = await axiosSecure.patch(`/coupon/${id}`)
+            refetch()
+            toast.info("Coupon Expired Successfully");
+           } catch (error) {
+            console.error(error)
+            toast.error("Failed to Expire Coupon")
+           }
+    }
     const handleDelete = async (id)=>{
        try {
-        const req = await noramlAxios.delete(`/coupon/${id}`)
+        const req = await axiosSecure.delete(`/coupon/${id}`)
         refetch()
         toast.success("Coupon Deleted Successfully");
        } catch (error) {
@@ -72,6 +82,7 @@ export default function ManageCoupons() {
                         <TableHeadCell>Description</TableHeadCell>
                         <TableHeadCell>Percentage</TableHeadCell>
                         <TableHeadCell>Code</TableHeadCell>
+                        <TableHeadCell>Expire</TableHeadCell>
                         <TableHeadCell>Delete</TableHeadCell>
                     </TableHead>
                     <TableBody className="divide-y">
@@ -88,6 +99,14 @@ export default function ManageCoupons() {
 
                                 <TableCell className="text-gray-600 dark:text-gray-300">{coupon.code}</TableCell>
                                 <TableCell>
+                                    <button
+                                        disabled={coupon.expired}
+                                        onClick={() => expireCoupon(coupon._id)}
+                                        className={`${coupon.expired? 'bg-yellow-600 hover:bg-yellow-700'  : 'bg-red-600 hover:bg-red-700 '} px-4 py-2 text-sm font-medium text-white rounded-md  focus:outline-none focus:ring focus:ring-red-300`}
+                                    >
+                                        {coupon.expired ? "Expired" : "Expire"}
+                                    </button>
+                                </TableCell><TableCell>
                                     <button
                                         onClick={() => handleDelete(coupon._id)}
                                         className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300"
