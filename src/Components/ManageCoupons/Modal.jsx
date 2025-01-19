@@ -18,7 +18,7 @@ export default function Modal({
                 <ML.Header />
                 <ML.Body>
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        <h3 className="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
+                        <h3 className="text-xl font-medium text-gray-900 dark:text-white">Add Coupon</h3>
                         <div>
                             <div className="mb-2 block">
                                 <Label htmlFor="coupon-title" value="Coupon Title" />

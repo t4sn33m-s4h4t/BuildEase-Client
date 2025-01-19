@@ -102,7 +102,7 @@ export default function ManageCoupons() {
                                     <button
                                         disabled={coupon.expired}
                                         onClick={() => expireCoupon(coupon._id)}
-                                        className={`${coupon.expired? 'bg-yellow-600 hover:bg-yellow-700'  : 'bg-red-600 hover:bg-red-700 '} px-4 py-2 text-sm font-medium text-white rounded-md  focus:outline-none focus:ring focus:ring-red-300`}
+                                        className={`${coupon.expired? 'bg-yellow-800'  : 'bg-yellow-400 hover:bg-yellow-500 '} px-4 py-2 text-sm font-medium text-white rounded-md  focus:outline-none focus:ring focus:ring-red-300`}
                                     >
                                         {coupon.expired ? "Expired" : "Expire"}
                                     </button>
