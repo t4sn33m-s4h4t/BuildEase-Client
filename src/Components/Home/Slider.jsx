@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import 'react-awesome-slider/dist/styles.css';
 import { Carousel } from 'flowbite-react';
 
@@ -35,7 +34,7 @@ export default function Slider() {
 
     return (
         <div className="relative h-[70vh]">
-            <Carousel slideInterval={2000}>
+            <Carousel slideInterval={2500}>
                 {slides.map((slide, index) => (
                     <div key={index} className="relative h-full ">
                         <img

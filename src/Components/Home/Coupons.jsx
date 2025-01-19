@@ -5,11 +5,9 @@ import { toast } from 'react-toastify';
 import Title from '../Shared/Title';
 import { motion } from 'framer-motion';
 import useCoupons from '../../CustomHooks/useCoupons';
-
 function Coupons() {
     const { coupons } = useCoupons()
     const [copiedCoupon, setCopiedCoupon] = useState('');
-
     const handleCopy = (code) => {
         setCopiedCoupon(code);
         toast.success(`Coupon code "${code}" copied!`);

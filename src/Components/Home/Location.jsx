@@ -11,10 +11,8 @@ const Location = () => {
         imageUrl: mapImg
     };
 
-
     return (
         <section className="py-16 px-4 sm:px-6 lg:px-16">
-            
             <Title
                 Heading=" Apartment Location and Directions"
                 Subheading="Your all-in-one platform for building management and affordable online room rentals."
