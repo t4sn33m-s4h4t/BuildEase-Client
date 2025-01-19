@@ -4,6 +4,10 @@
 
 Welcome to **BuildEase**, a comprehensive Building Management System (BMS) designed to streamline the process of renting rooms or apartments. Whether you're a user looking for a rental or an admin managing properties, BuildEase has you covered with a plethora of features and functionalities.
 
+## Admin Credentials
+- Admin username: adminemail@gmail.com
+- Password: AdminEmail
+
 ![BuildEase Preview](./ss1.png)
 ![BuildEase Preview](./ss2.png)
 ![BuildEase Preview](./ss3.png)
