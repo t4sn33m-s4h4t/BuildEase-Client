@@ -65,7 +65,7 @@ export default function AdminProfile() {
                                 <strong>No. of Rooms:</strong> <span className="text-gray-500">{!stats?.totalRooms ? "0" : stats.totalRooms}</span>
                             </p>
                             <p>
-                                <strong>Available Rooms:</strong> <span className="text-gray-500">{!stats?.availableRooms ? "0" : (100 - (100 * stats.availableRooms / stats.totalRooms)).toFixed(2) + '%'}</span>
+                                <strong>Available Rooms:</strong> <span className="text-gray-500">{!stats?.availableRooms ? "0" : ((100 * stats.availableRooms / stats.totalRooms)).toFixed(2) + '%'}</span>
                             </p>
                             <p>
                                 <strong>No. of Users:</strong> <span className="text-gray-500">{!stats?.users ? "0" : stats.users}</span>
