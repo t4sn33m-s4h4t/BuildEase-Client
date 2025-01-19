@@ -33,7 +33,7 @@ export default function ManageCoupons() {
             refetch()
         } catch (error) {
             toast.error("Coupon Added Failed")
-            console.log(error)
+            console.error(error)
         }
 
         
@@ -65,7 +65,7 @@ export default function ManageCoupons() {
                 <Button onClick={() => setOpenModal(true)} className="bg-purple-700 mx-auto mb-10">Add Coupon</Button>
             {
                 coupons?.length ? 
-                <div className="overflow-x-auto lg:w-[85vw] md:w-[60vw] lg:max-w-3xl md:max-w-lg mx-auto p-0 md:p-3 lg:p-4">
+                <div className="overflow-x-auto md:w-[70vw] w-[80vw] mx-auto p-0 md:p-3 lg:p-4">
                 <Table className="min-w-full table-auto">
                     <TableHead>
                         <TableHeadCell>Title</TableHeadCell>

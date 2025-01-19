@@ -14,7 +14,6 @@ const useCoupons = () => {
         const response = await normalAxios.get('/coupons');
         return response.data;
       },
-    keepPreviousData: true,
 }
 )
   return {

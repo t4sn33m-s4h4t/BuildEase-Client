@@ -15,7 +15,6 @@ const useAgreements = () => {
         const response = await axiosSecure.get('/agreements');
         return response.data;
       },
-    keepPreviousData: true,
 }
 )
   return {

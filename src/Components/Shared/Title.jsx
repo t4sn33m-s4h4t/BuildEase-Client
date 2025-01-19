@@ -21,7 +21,7 @@ const Title = ({ Heading, Subheading }) => {
       className="py-12 dark:bg-dark bg-light text-center"
     >
       <div className="container mx-auto px-6 sm:px-12">
-          <h2 className="mb-3 rubik-dirt-regular text-3xl font-bold text-dark dark:text-white">
+          <h2 className="mb-3 rubik-dirt-regular text-2xl md:text-2xl lg:text-3xl font-bold text-dark dark:text-white">
             {Heading}
           </h2>
           <p className="text-base font-medium text-gray-600 dark:text-gray-400">

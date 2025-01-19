@@ -49,11 +49,11 @@ const Sidebar = () => {
             </Link>
             <div className="mt-10">
                 {
-                    Menus.map((menu, i) => (
+                    Menus.map((menu) => (
                         <>
-                            <hr className={` ${menu.spacing && 'my-4'} mx-auto duration-300 w-2/3 ${(menu.spacing && open) ? 'block' : 'hidden'}`} />
+                            <hr  className={` ${menu.spacing && 'my-4'} mx-auto duration-300 w-2/3 ${(menu.spacing && open) ? 'block' : 'hidden'}`} />
                             <NavLink
-                                to={menu?.path} key={i}
+                                to={menu?.path}
                                 className={({ isActive }) =>
                                     isActive ? "text-gray-300 text-md items-center flex gap-4 pointer p-2 rounded-md hover:bg-gray-50 hover:bg-opacity-15 bg-gray-50 bg-opacity-15"
                                         : "text-gray-300 text-md items-center flex gap-4 pointer p-2 rounded-md hover:bg-gray-50 hover:bg-opacity-15"

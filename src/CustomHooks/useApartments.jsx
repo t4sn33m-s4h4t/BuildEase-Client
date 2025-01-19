@@ -20,7 +20,7 @@ const useApartments = ({ page = 1, limit = 6, minRent, maxRent }) => {
 
         return response.data;
       },
-    keepPreviousData: true,
+    
 }
 )
   return {

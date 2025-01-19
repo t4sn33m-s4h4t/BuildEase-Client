@@ -55,7 +55,6 @@ const CheckoutForm = ({coupon, paymentData, setPaymentData }) => {
         
             try {
                 const res = await axiosSecure.post('/payment-history', {...paymentDetails, month});
-                console.log(res)
                 toast.success("Payment Success!");
                 navigate('/dashboard/payment-history');
             } catch (error) {

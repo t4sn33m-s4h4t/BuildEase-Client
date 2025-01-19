@@ -37,7 +37,6 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const tokenResponse = await noramlAxios.post("/jwt", { email });
-      console.log(tokenResponse)
       if (tokenResponse.data.token) {
         localStorage.setItem("authToken", tokenResponse.data.token);
       }

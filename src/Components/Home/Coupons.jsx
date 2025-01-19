@@ -45,8 +45,12 @@ function Coupons() {
                                 </p>
                             </div>
                             <div className="flex flex-col items-center justify-between mt-4">
+                  
                                 <p className="text-lg font-medium text-gray-800 dark:text-white">
-                                    Code: <span className="font-bold text-primary">{coupon.code}</span>
+                                    Code: <span className="font-bold border px-2 py-1 text-primary">{coupon.code}</span>
+                                </p>
+                                <p className="text-lg mt-5 font-medium text-gray-800 dark:text-white">
+                                    <span className="font-extrabold text-primary">{coupon.percentage}% OFF</span>
                                 </p>
                                 <CopyToClipboard text={coupon.code} onCopy={() => handleCopy(coupon.code)}>
                                     <Button

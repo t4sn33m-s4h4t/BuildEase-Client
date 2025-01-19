@@ -29,7 +29,7 @@ export default function ManageMembers() {
   return (
     <div className="block ">
       <Title Heading="Manage Members" />
-      <div className="overflow-x-auto lg:w-[85vw] md:w-[60vw] lg:max-w-3xl md:max-w-lg mx-auto p-0 md:p-3 lg:p-4">
+      <div className="overflow-x-auto md:w-[70vw] w-[80vw] mx-auto p-0 md:p-3 lg:p-4">
         <Table className="min-w-full table-auto">
           <TableHead>
             <TableHeadCell>User Name</TableHeadCell>
@@ -45,15 +45,15 @@ export default function ManageMembers() {
                 key={user._id}
                 className="bg-white dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                <TableCell className=" whitespace-nowrap font-medium text-gray-900 dark:text-white">
                   {user.name}
                 </TableCell>
-                <TableCell className="text-gray-600 dark:text-gray-300">{user.email}</TableCell>
-                <TableCell className="text-gray-600 dark:text-gray-300">{user.role}</TableCell>
+                <TableCell className=" text-gray-600 dark:text-gray-300">{user.email}</TableCell>
+                <TableCell className=" text-gray-600 dark:text-gray-300">{user.role}</TableCell>
                 <TableCell>
                   <button
                     onClick={() => removeMember(user.email, user.name)}
-                    className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300"
+                    className=" px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300"
                   >
                     Remove
                   </button>

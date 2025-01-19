@@ -12,10 +12,8 @@ const useStat = () => {
     queryKey: ["stat"],
     queryFn: async () => {
         const response = await axiosSecure.get('/stats');
-        console.log(response)
         return response.data;
       },
-    keepPreviousData: true,
 }
 )
   return {

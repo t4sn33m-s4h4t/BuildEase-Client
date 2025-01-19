@@ -16,7 +16,6 @@ const useUsers = () => {
         const response = await axiosSecure.get('/users');
         return response.data;
       },
-      keepPreviousData: true,
     }
   )
   return {
