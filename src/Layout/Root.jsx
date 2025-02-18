@@ -1,11 +1,11 @@
 import Navbar from '../Components/Shared/Navbar.jsx';
 import Footer from '../Components/Shared/Footer.jsx';
 import { Outlet, useLocation } from 'react-router-dom';
-import Slider from '../Components/Home/Slider.jsx';
+import Slider from '../Components/Home/Slider.jsx'; 
 
 const Root = () => {
     const location = useLocation();  
-
+    
     return (
         <div>
             <Navbar /> 

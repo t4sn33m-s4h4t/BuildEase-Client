@@ -67,3 +67,6 @@
       gap: 24px; 
   }
 }
+.enabled\:hover\:bg-cyan-800:hover{
+  background-color: rgb(85 33 181 / var(--tw-bg-opacity, 1))!important;
+}

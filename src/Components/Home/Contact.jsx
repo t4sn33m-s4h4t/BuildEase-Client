@@ -12,7 +12,7 @@ const Contact = () => {
           Subheading="Clear your all confusion contacting with us."
         />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8"> 
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <div className="bg-white p-6 rounded-md shadow-lg">
                         <form
                        onSubmit={(e) => {
                                               e.preventDefault()
@@ -28,7 +28,7 @@ const Contact = () => {
                                     type="text"
                                     id="name"
                                     placeholder="Your Name"
-                                    className="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                                 />
                             </div>
                             <div className="mb-4">
@@ -40,7 +40,7 @@ const Contact = () => {
                                     type="email"
                                     id="email"
                                     placeholder="Your Email"
-                                    className="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                                 />
                             </div>
                             <div className="mb-4">
@@ -51,19 +51,19 @@ const Contact = () => {
                                     id="message"
                                     placeholder="Your Message"
                                     rows="4"
-                                    className="w-full px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    className="w-full px-4 py-2 border border-purple-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                                 ></textarea>
                             </div>
                             <button
                                 type="submit"
-                                className="w-full bg-purple-600 text-white font-semibold py-2 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                                className="w-full bg-purple-600 text-white font-semibold py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                             >
                                 Send Message
                             </button>
                         </form>
                     </div>
  
-                    <div className="bg-purple-600 p-6 rounded-lg shadow-lg text-white">
+                    <div className="bg-purple-600 p-6 rounded-md shadow-lg text-white">
                         <h3 className="text-2xl font-bold mb-4">Get in Touch</h3>
                         <p className="mb-4">
                             We'd love to hear from you! Reach out to us for any inquiries or feedback.

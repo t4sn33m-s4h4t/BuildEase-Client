@@ -41,7 +41,7 @@ const Location = () => {
                             small={apartmentDetails.imageUrl}
                             large={apartmentDetails.imageUrl}
                             alt="Apartment Location"
-                            className="w-full h-full object-cover cursor-pointer rounded-lg"
+                            className="w-full h-full object-cover cursor-pointer rounded-md"
                         />
                     </div>
                 </div>

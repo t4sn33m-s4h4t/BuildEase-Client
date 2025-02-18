@@ -53,7 +53,7 @@ export default function UserProfile() {
                     </span>
 
 
-                    <div className="w-full text-center md:text-left mt-6 bg-white text-gray-800 rounded-lg p-1 md:p-6 shadow-inner">
+                    <div className="w-full text-center md:text-left mt-6 bg-white text-gray-800 rounded-md p-1 md:p-6 shadow-inner">
                         <h6 className="mb-4 text-lg font-semibold text-purple-700">
                             Apartment Informations
                         </h6>

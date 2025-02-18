@@ -2,7 +2,7 @@ import { Card } from "flowbite-react";
 import { Link } from 'react-router-dom';
 const ApartmentCard = ({ apartment }) => {
     return (
-        <Card className="mx-auto max-w-lg w-full shadow-lg rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+        <Card className="mx-auto max-w-lg w-full shadow-lg rounded-md overflow-hidden border border-gray-200 dark:border-gray-700">
             <div className="relative">
                 <img
                     src={apartment.image}
@@ -28,7 +28,7 @@ const ApartmentCard = ({ apartment }) => {
                     </div>
                 </div>
                 <Link to={`/agreement/${apartment._id}`}>
-                    <button className="mt-2 w-full px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800">
+                    <button className="mt-2 w-full px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-purple-700 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800">
                         Agreement
                     </button>
                 </Link>

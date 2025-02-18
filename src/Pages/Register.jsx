@@ -87,7 +87,7 @@ const Register = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
-            <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-row-reverse flex-1">
+            <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-md flex justify-center flex-row-reverse flex-1">
                 <div className="lg:w-1/2 xl:w-5/12 px-6 py-4 sm:p-12 sm:py-8">
                     <h2 className="text-dark text-center rubik-dirt-regular text-3xl font-bold text-dark dark:text-white">Register</h2>
                     <div className="flex flex-col items-center">
@@ -95,7 +95,7 @@ const Register = () => {
                             <div className="flex flex-col items-center">
                                 <button
                                     onClick={handleGoogleSignIn}
-                                    className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow"
+                                    className="w-full max-w-xs font-bold shadow-sm rounded-md py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow"
                                     aria-label="Sign in with Google">
                                     <div className="bg-white p-2 rounded-full">
                                         <FaGoogle />
@@ -105,7 +105,7 @@ const Register = () => {
 
                                 <button
                                     onClick={handleGitHubSignIn}
-                                    className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow mt-5"
+                                    className="w-full max-w-xs font-bold shadow-sm rounded-md py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow mt-5"
                                     aria-label="Sign in with GitHub">
                                     <div className="bg-white p-2 rounded-full">
                                         <FaGithub />
@@ -122,7 +122,7 @@ const Register = () => {
 
                             <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
                                 <input
-                                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                    className="w-full px-8 py-4 rounded-md font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                     type="text"
                                     placeholder="Name"
                                     value={name}
@@ -131,7 +131,7 @@ const Register = () => {
                                     required
                                 />
                                 <input
-                                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                                    className="w-full px-8 py-4 rounded-md font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                     type="email"
                                     placeholder="Email"
                                     value={email}
@@ -140,7 +140,7 @@ const Register = () => {
                                     required
                                 />
                                 <input
-                                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                                    className="w-full px-8 py-4 rounded-md font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                     type="password"
                                     placeholder="Password"
                                     value={password}
@@ -150,7 +150,7 @@ const Register = () => {
                                 />
                                 {passError && <p className="text-red-500 text-sm mt-2">{passError}</p>}
                                 <input
-                                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                                    className="w-full px-8 py-4 rounded-md font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                                     type="file"
                                     accept="image/jpeg,image/png,image/gif"
                                     onChange={(e) => setPhoto(e.target.files[0])}
@@ -160,7 +160,7 @@ const Register = () => {
                                 {photoError && <p className="text-red-500 text-sm mt-2">{photoError}</p>}
                                 <button
                                     type="submit"
-                                    className="mt-5 tracking-wide font-semibold bg-purple-500 text-gray-100 w-full py-4 rounded-lg hover:bg-purple-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:outline-none">
+                                    className="mt-5 tracking-wide font-semibold bg-purple-500 text-gray-100 w-full py-4 rounded-md hover:bg-purple-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:outline-none">
                                     <MdPersonAdd />
                                     <span className="ml-3">{btnText}</span>
                                 </button>

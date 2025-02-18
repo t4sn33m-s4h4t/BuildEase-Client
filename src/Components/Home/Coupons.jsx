@@ -24,37 +24,37 @@ function Coupons() {
 
                 {
                     coupons?.length ? 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {coupons.map((coupon, index) => (
 
                         <motion.div
                             key={index}
-                            className="shadow-xl px-8 py-5 w-full rounded-xl dark:bg-gray-800 transition-transform transform hover:scale-105 hover:shadow-2xl"
+                            className="shadow-xl px-8 py-5 w-full rounded-xl bg-purple-700 transition-transform transform hover:scale-105 hover:shadow-2xl"
                             initial={{ opacity: 0, y: 50 }} 
                             animate={{ opacity: 1, y: 0 }} 
                             transition={{ duration: 1, ease: [1, -0.2, 0.11, -0.6] }}
                         >
                             <div>
-                                <h3 className="text-3xl text-center font-semibold text-gray-800 dark:text-white tracking-tight">
+                                <h3 className="text-3xl text-center font-semibold  text-white tracking-tight">
                                     {coupon.discount}
                                 </h3>
-                                <p className="text-gray-600 text-center dark:text-gray-400 text-sm mt-2">
+                                <p className=" text-center text-gray-100 text-sm mt-2">
                                     {coupon.description}
                                 </p>
                             </div>
                             <div className="flex flex-col items-center justify-between mt-4">
                   
-                                <p className="text-lg font-medium text-gray-800 dark:text-white">
-                                    Code: <span className="font-bold border px-2 py-1 text-primary">{coupon.code}</span>
+                                <p className="text-lg font-medium text-white">
+                                    Code: <span className="font-bold border px-2 py-1 text-primary rounded">{coupon.code}</span>
                                 </p>
-                                <p className="text-lg mt-5 font-medium text-gray-800 dark:text-white">
+                                <p className="text-lg mt-5 font-medium text-white">
                                     <span className="font-extrabold text-primary">{coupon.percentage}% OFF</span>
                                 </p>
                                 <CopyToClipboard text={coupon.code} onCopy={() => handleCopy(coupon.code)}>
                                     <Button
                                         color="primary"
                                         size="sm"
-                                        className="px-4 border py-1 mt-5 font-semibold rounded-lg hover:bg-primary-600 focus:outline-none"
+                                        className="px-4 border py-1 mt-5 font-semibold rounded-md text-white hover:bg-purple-600 focus:outline-none"
                                     >
                                         Copy
                                     </Button>

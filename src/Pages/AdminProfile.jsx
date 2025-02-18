@@ -56,7 +56,7 @@ export default function AdminProfile() {
                         {user?.email || "admin@example.com"}
                     </span>
 
-                    <div className="w-full text-center md:text-left mt-6 bg-white text-gray-800 rounded-lg p-1 md:p-6 shadow-inner">
+                    <div className="w-full text-center md:text-left mt-6 bg-white text-gray-800 rounded-md p-1 md:p-6 shadow-inner">
                         <h6 className="mb-4 text-lg font-semibold text-purple-700">
                             Stats Details
                         </h6>
@@ -80,7 +80,7 @@ export default function AdminProfile() {
 
             <Title Heading="Statistics" />
             <div className=" flex flex-col lg:flex-row gap-5 justify-around mx-auto my-8">
-                <div className="bg-white p-6 max-w-2xl lg:w-1/3 rounded-lg shadow-lg ">
+                <div className="bg-white p-6 max-w-2xl lg:w-1/3 rounded-md shadow-lg ">
                     <h3 className="text-xl font-bold text-center mb-4 text-purple-600">Room Statistics</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <PieChart>
@@ -102,7 +102,7 @@ export default function AdminProfile() {
                     </ResponsiveContainer>
                 </div>
 
-                <div className="bg-white p-6 max-w-2xl lg:w-1/3 rounded-lg shadow-lg">
+                <div className="bg-white p-6 max-w-2xl lg:w-1/3 rounded-md shadow-lg">
                     <h3 className="text-xl font-bold text-center mb-4 text-purple-600">User & Member Distribution</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <PieChart>
