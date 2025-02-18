@@ -2,12 +2,13 @@ import { Card, Badge } from "flowbite-react";
 import Title from '../Components/Shared/Title.jsx';
 import { useAuth } from "../CustomHooks/useAuth.jsx";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import useStat from '../CustomHooks/useStat.jsx'
+import useStat from '../CustomHooks/useStat.jsx';
 import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
+
 export default function AdminProfile() {
     const { user } = useAuth();
-    const { stats } = useStat()
+    const { stats } = useStat();
     const [isImageError, setIsImageError] = useState(false);
 
     const roomData = [
@@ -26,9 +27,8 @@ export default function AdminProfile() {
     return (
         <>
             <Title Heading="Admin Profile" />
-            <Card className="max-w-xl mb-5 mx-auto bg-gradient-to-br from-purple-50 to-indigo-50 text-black shadow-xl">
+            <Card className="max-w-xl mb-5 mx-auto bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 text-black dark:text-white shadow-xl">
                 <div className="flex flex-col items-center md:p-8 p-0">
-
                     <div className="relative">
                         {isImageError ? (
                             <FaUserCircle size={120} className="text-gray-400" />
@@ -49,29 +49,29 @@ export default function AdminProfile() {
                             Admin
                         </Badge>
                     </div>
-                    <h5 className="mt-4 text-2xl font-extrabold text-gray-800">
+                    <h5 className="mt-4 text-2xl font-extrabold text-gray-800 dark:text-white">
                         {user?.displayName || "Admin Name"}
                     </h5>
-                    <span className="text-sm font-light text-gray-600">
+                    <span className="text-sm font-light text-gray-600 dark:text-gray-300">
                         {user?.email || "admin@example.com"}
                     </span>
 
-                    <div className="w-full text-center md:text-left mt-6 bg-white text-gray-800 rounded-md p-1 md:p-6 shadow-inner">
-                        <h6 className="mb-4 text-lg font-semibold text-purple-700">
+                    <div className="w-full text-center md:text-left mt-6 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-300 rounded-md p-1 md:p-6 shadow-inner">
+                        <h6 className="mb-4 text-lg font-semibold text-purple-700 dark:text-purple-400">
                             Stats Details
                         </h6>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <p>
-                                <strong>No. of Rooms:</strong> <span className="text-gray-500">{!stats?.totalRooms ? "0" : stats.totalRooms}</span>
+                                <strong>No. of Rooms:</strong> <span className="text-gray-500 dark:text-gray-400">{!stats?.totalRooms ? "0" : stats.totalRooms}</span>
                             </p>
                             <p>
-                                <strong>Available Rooms:</strong> <span className="text-gray-500">{!stats?.availableRooms ? "0" : ((100 * stats.availableRooms / stats.totalRooms)).toFixed(2) + '%'}</span>
+                                <strong>Available Rooms:</strong> <span className="text-gray-500 dark:text-gray-400">{!stats?.availableRooms ? "0" : ((100 * stats.availableRooms / stats.totalRooms)).toFixed(2) + '%'}</span>
                             </p>
                             <p>
-                                <strong>No. of Users:</strong> <span className="text-gray-500">{!stats?.users ? "0" : stats.users}</span>
+                                <strong>No. of Users:</strong> <span className="text-gray-500 dark:text-gray-400">{!stats?.users ? "0" : stats.users}</span>
                             </p>
                             <p>
-                                <strong>No. of Members:</strong> <span className="text-gray-500">{!stats?.members ? "0" : stats.members}</span>
+                                <strong>No. of Members:</strong> <span className="text-gray-500 dark:text-gray-400">{!stats?.members ? "0" : stats.members}</span>
                             </p>
                         </div>
                     </div>
@@ -79,9 +79,9 @@ export default function AdminProfile() {
             </Card>
 
             <Title Heading="Statistics" />
-            <div className=" flex flex-col lg:flex-row gap-5 justify-around mx-auto my-8">
-                <div className="bg-white p-6 max-w-2xl lg:w-1/3 rounded-md shadow-lg ">
-                    <h3 className="text-xl font-bold text-center mb-4 text-purple-600">Room Statistics</h3>
+            <div className="flex flex-col lg:flex-row gap-5 justify-around mx-auto my-8">
+                <div className="bg-white dark:bg-gray-800 p-6 max-w-2xl lg:w-1/3 rounded-md shadow-lg">
+                    <h3 className="text-xl font-bold text-center mb-4 text-purple-600 dark:text-purple-400">Room Statistics</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <PieChart>
                             <Pie
@@ -102,8 +102,8 @@ export default function AdminProfile() {
                     </ResponsiveContainer>
                 </div>
 
-                <div className="bg-white p-6 max-w-2xl lg:w-1/3 rounded-md shadow-lg">
-                    <h3 className="text-xl font-bold text-center mb-4 text-purple-600">User & Member Distribution</h3>
+                <div className="bg-white dark:bg-gray-800 p-6 max-w-2xl lg:w-1/3 rounded-md shadow-lg">
+                    <h3 className="text-xl font-bold text-center mb-4 text-purple-600 dark:text-purple-400">User & Member Distribution</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <PieChart>
                             <Pie

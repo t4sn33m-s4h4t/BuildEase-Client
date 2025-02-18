@@ -1,3 +1,4 @@
+
 import {
   Dropdown,
   DropdownDivider,
@@ -6,31 +7,28 @@ import {
   Navbar as Nv,
   NavbarBrand,
   NavbarCollapse,
-  
   NavbarToggle,
 } from "flowbite-react";
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.png';
+import DarkLogo from '../../assets/logo_dark.png'
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaHome, FaBuilding, FaInfoCircle, FaHeart } from 'react-icons/fa';
-import {MdDashboard} from 'react-icons/md'
+import { MdDashboard } from 'react-icons/md';
 import { useAuth } from "../../CustomHooks/useAuth";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { FaUserCircle } from "react-icons/fa";
 import { BiLogInCircle } from "react-icons/bi";
+import ThemeController from "../ThemeController";
 import { IoLogInSharp } from "react-icons/io5";
 
-
-
 const Navbar = () => {
-
   const { user, signOutUser, setUser } = useAuth();
   const [imgSrc, setImgSrc] = useState(user?.photoURL);
   useEffect(() => {
-    setImgSrc(user?.photoURL)
-  }, [user])
+    setImgSrc(user?.photoURL);
+  }, [user]);
   const navigate = useNavigate();
-
 
   async function logOut() {
     try {
@@ -62,26 +60,27 @@ const Navbar = () => {
   ];
   if (user && user.email) {
     menus.push(
-      
       {
         name: "Favorites",
-      path: "/favorites",
-      icon: <FaHeart />
-      },{
-        name: "Dashboard",
-      path: "/dashboard",
-      icon: <MdDashboard />
+        path: "/favorites",
+        icon: <FaHeart />
       },
-    )
+      {
+        name: "Dashboard",
+        path: "/dashboard",
+        icon: <MdDashboard />
+      },
+    );
   }
-  
+
   const [isImageError, setIsImageError] = useState(false);
   return (
-    <div className="px-2 md:px-12 lg:px-36 bg-purple-200 sticky top-0 z-50">
-      <Nv fluid rounded className="bg-transparent ">
+    <div className="px-2 md:px-12 lg:px-36 bg-purple-200 dark:bg-gray-800 sticky top-0 z-50">
+      <Nv fluid rounded className="bg-transparent">
         <NavbarBrand as={Link} to="/">
-          <img className="md:max-w-14 max-w-12 mr-1 md:mr-3" src={logo} alt="" />
-          <span className="  self-center whitespace-nowrap text-xl font-semibold dark:text-white hidden lg:block">BuildEase</span>
+        <img className="md:max-w-14 max-w-12 mr-1 md:mr-3 dark:hidden" src={logo} alt="" />
+        <img className="md:max-w-14 max-w-12 mr-1 md:mr-3 hidden dark:block" src={DarkLogo} alt="" />
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white hidden lg:block">BuildEase</span>
         </NavbarBrand>
         <div className="flex md:order-2">
           {
@@ -117,23 +116,27 @@ const Navbar = () => {
                   className={({ isActive }) =>
                     isActive
                       ? 'text-purple-600 font-bold dark:text-purple-400'
-                      : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:purple-blue-400'
+                      : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400'
                   }
                   to="/login"
                 >
-                 <div className="flex items-center gap-2"> <span><BiLogInCircle /></span>
-                 <span>Login</span></div>
+                  <div className="flex items-center gap-2">
+                    <span><BiLogInCircle /></span>
+                    <span>Login</span>
+                  </div>
                 </NavLink>
                 <NavLink
                   className={({ isActive }) =>
                     isActive
                       ? 'text-purple-600 font-bold dark:text-purple-400'
-                      : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:purple-blue-400'
+                      : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400'
                   }
                   to="/register"
                 >
-                   <div className="flex items-center gap-2"> <span><IoLogInSharp /></span>
-                   <span>Register</span></div>
+                  <div className="flex items-center gap-2">
+                    <span><IoLogInSharp /></span>
+                    <span>Register</span>
+                  </div>
                 </NavLink>
               </div>
           }
@@ -141,29 +144,28 @@ const Navbar = () => {
         </div>
         <NavbarCollapse>
           {
-            menus.map((menu => <NavLink
-              key={menu.path}
-              to={menu.path}
-
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-purple-600 font-bold dark:text-purple-400'
-                  : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:purple-blue-400'
-              }
-            >
-               <div className="flex items-center gap-2"> <span>{menu.icon}</span>
-               <span>{menu.name}</span></div>
-            </NavLink>
-
+            menus.map((menu) => (
+              <NavLink
+                key={menu.path}
+                to={menu.path}
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-purple-600 font-bold dark:text-purple-400'
+                    : 'text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400'
+                }
+              >
+                <div className="flex items-center gap-2">
+                  <span>{menu.icon}</span>
+                  <span>{menu.name}</span>
+                </div>
+              </NavLink>
             ))
           }
-
-
         </NavbarCollapse>
+        <ThemeController />
+      </Nv>
+    </div>
+  );
+};
 
-      </Nv >
-    </div >
-  )
-}
-
-export default Navbar
+export default Navbar;

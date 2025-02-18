@@ -5,24 +5,22 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-
-
 const CheckoutForm = ({ coupon, paymentData, setPaymentData }) => {
-    const [btnText, setBtntext] = useState("Pay Now")
-    const [month, setMonth] = useState("")
-    const [clientSecret, setClientSecret] = useState('')
+    const [btnText, setBtntext] = useState("Pay Now");
+    const [month, setMonth] = useState("");
+    const [clientSecret, setClientSecret] = useState('');
     const axiosSecure = useAxiosSecure();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setBtntext("Paying...")
-        if (!stripe || !elements) { return }
+        setBtntext("Paying...");
+        if (!stripe || !elements) { return; }
         const card = elements.getElement(CardElement);
-        if (card == null) { return }
+        if (card == null) { return; }
         const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card,
@@ -39,7 +37,7 @@ const CheckoutForm = ({ coupon, paymentData, setPaymentData }) => {
                     email: paymentData?.agreement?.userEmail
                 },
             },
-        })
+        });
 
         if (paymentIntent?.status === "succeeded") {
             const paymentDetails = {
@@ -61,54 +59,54 @@ const CheckoutForm = ({ coupon, paymentData, setPaymentData }) => {
         } else {
             toast.error("Payment Failed");
         }
-        setBtntext("Pay Now")
+        setBtntext("Pay Now");
     };
 
     const fetchPaymentData = async (coupon) => {
         try {
             const response = await axiosSecure.post('/make-payment', { email: user.email, coupon });
             setPaymentData(response.data);
-            setClientSecret(response.data.clientSecret)
+            setClientSecret(response.data.clientSecret);
         } catch (err) {
             console.error(err);
         }
     };
-    useEffect(() => {
 
+    useEffect(() => {
         if (user.email) {
             fetchPaymentData(coupon);
         }
     }, [user.email, coupon]);
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 p-6 rounded-md shadow-lg">
             <div className="col-span-2 sm:col-span-1 mb-10">
-                <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-900">Member Email</label>
-                <input id="email" readOnly disabled value={user.email} className="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"></input>
+                <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300">Member Email</label>
+                <input id="email" readOnly disabled value={user.email} className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 p-2.5 text-sm text-gray-900 dark:text-gray-300 focus:border-purple-500 focus:ring-purple-500"></input>
             </div>
             <div className="flex flex-col md:flex-row justify-between gap-0 md:gap-5">
                 <div className="col-span-2 sm:col-span-1 mb-10 w-full">
-                    <label htmlFor="floor" className="mb-2 block text-sm font-medium text-gray-900">Floor No</label>
-                    <input id="floor" readOnly disabled value={paymentData?.agreement?.floorNo} className="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"></input>
+                    <label htmlFor="floor" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300">Floor No</label>
+                    <input id="floor" readOnly disabled value={paymentData?.agreement?.floorNo} className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 p-2.5 text-sm text-gray-900 dark:text-gray-300 focus:border-purple-500 focus:ring-purple-500"></input>
                 </div>
                 <div className="col-span-2 sm:col-span-1 mb-10 w-full">
-                    <label htmlFor="Block" className="mb-2 block text-sm font-medium text-gray-900">Block Name</label>
-                    <input id="Block" readOnly disabled value={paymentData?.agreement?.blockName} className="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"></input>
+                    <label htmlFor="Block" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300">Block Name</label>
+                    <input id="Block" readOnly disabled value={paymentData?.agreement?.blockName} className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 p-2.5 text-sm text-gray-900 dark:text-gray-300 focus:border-purple-500 focus:ring-purple-500"></input>
                 </div>
             </div>
             <div className="flex flex-col md:flex-row justify-between gap-0 md:gap-5">
                 <div className="col-span-2 sm:col-span-1 mb-10 w-full">
-                    <label htmlFor="apartmentNo" className="mb-2 block text-sm font-medium text-gray-900">Apartment No</label>
-                    <input id="apartmentNo" readOnly disabled value={paymentData?.agreement?.apartmentNo} className="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"></input>
+                    <label htmlFor="apartmentNo" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300">Apartment No</label>
+                    <input id="apartmentNo" readOnly disabled value={paymentData?.agreement?.apartmentNo} className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 p-2.5 text-sm text-gray-900 dark:text-gray-300 focus:border-purple-500 focus:ring-purple-500"></input>
                 </div>
                 <div className="col-span-2 sm:col-span-1 mb-10 w-full">
-                    <label htmlFor="apartmentNo" className="mb-2 block text-sm font-medium text-gray-900">Rent</label>
-                    <input id="apartmentNo" readOnly disabled value={paymentData?.agreement?.rent} className="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"></input>
+                    <label htmlFor="apartmentNo" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300">Rent</label>
+                    <input id="apartmentNo" readOnly disabled value={paymentData?.agreement?.rent} className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 p-2.5 text-sm text-gray-900 dark:text-gray-300 focus:border-purple-500 focus:ring-purple-500"></input>
                 </div>
             </div>
             <div className="col-span-2 sm:col-span-1 mb-10">
-                <label htmlFor="month" className="mb-2 block text-sm font-medium text-gray-900">Month*</label>
-                <select onChange={(e) => setMonth(e.target.value)} id="month" required className="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500">
+                <label htmlFor="month" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300">Month*</label>
+                <select onChange={(e) => setMonth(e.target.value)} id="month" required className="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 p-2.5 text-sm text-gray-900 dark:text-gray-300 focus:border-purple-500 focus:ring-purple-500">
                     <option value="">Select Month</option>
                     <option value="January">January</option>
                     <option value="February">February</option>
@@ -140,15 +138,11 @@ const CheckoutForm = ({ coupon, paymentData, setPaymentData }) => {
                     },
                 }}
             />
-
-            <button type="submit" disabled={!stripe} className="mt-5 flex w-full items-center justify-center bg-purple-700 hover:bg-purple-900 rounded-md bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 ">
-                {
-                    btnText
-                }
+            <button type="submit" disabled={!stripe} className="mt-5 flex w-full items-center justify-center bg-purple-700 hover:bg-purple-800 rounded-md px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-purple-500">
+                {btnText}
             </button>
-
         </form>
     );
 };
 
-export default CheckoutForm
+export default CheckoutForm;

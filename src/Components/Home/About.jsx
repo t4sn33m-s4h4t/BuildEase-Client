@@ -3,8 +3,8 @@ import Title from '../Shared/Title';
 
 function About() {
   return (
-    <section className="py-8 ">
-      <div className="container mx-auto ">
+    <section className="py-8 bg-white dark:bg-gray-900">
+      <div className="container mx-auto">
         <Title 
           Heading="About The Building" 
           Subheading="Your all-in-one platform for building management and affordable online room rentals."

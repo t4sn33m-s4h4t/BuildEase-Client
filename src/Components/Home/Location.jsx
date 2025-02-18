@@ -1,7 +1,9 @@
+ 
 import { Card } from 'flowbite-react';
 import ReactModalImage from 'react-modal-image';
-import mapImg from '../../assets/map.png'
+import mapImg from '../../assets/map.png';
 import Title from '../Shared/Title';
+
 const Location = () => {
     const apartmentDetails = {
         name: 'Bashundhara City',
@@ -12,14 +14,14 @@ const Location = () => {
     };
 
     return (
-        <section className="py-8 ">
+        <section className="py-8 bg-white dark:bg-gray-900">
             <Title
-                Heading=" Apartment Location and Directions"
+                Heading="Apartment Location and Directions"
                 Subheading="Your all-in-one platform for building management and affordable online room rentals."
             />
             <div className="flex flex-col items-center lg:flex-row gap-12">
                 <div className="flex-1">
-                    <Card className="shadow-lg dark:bg-gray-800 p-6">
+                    <Card className="shadow-lg dark:bg-gray-800 dark:border-gray-700 p-6">
                         <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
                             {apartmentDetails.name}
                         </h3>
@@ -50,4 +52,4 @@ const Location = () => {
     );
 };
 
-export default Location;
+export default Location; 

@@ -36,13 +36,12 @@ const AdminAnnouncements = () => {
   };
 
   return (
-    <div className="py-8 ">
-      <div className="md:w-4/5 lg:w-3/5 w-full my-10 mx-auto p-2 md:p-8 bg-white dark:bg-gray-800 rounded-md shadow-lg">
+    <div className="py-8 bg-white dark:bg-gray-900">
         <Title Heading="Add Announcement" />
+      <div className="md:w-4/5 lg:w-3/5 w-full my-10 mx-auto p-2 md:p-8 bg-white dark:bg-gray-800 rounded-md shadow-lg">
         <form onSubmit={handleSubmit} className="space-y-6">
-
           <div>
-            <Label value="Announcement Title" className="mb-2" />
+            <Label value="Announcement Title" className="mb-2 text-gray-900 dark:text-white" />
             <TextInput
               id="title"
               name="title"
@@ -51,11 +50,12 @@ const AdminAnnouncements = () => {
               value={formData.title}
               onChange={handleChange}
               required
+              className="bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
           </div>
 
           <div>
-            <Label value="Announcement Description" className="mb-2" />
+            <Label value="Announcement Description" className="mb-2 text-gray-900 dark:text-white" />
             <Textarea
               id="description"
               name="description"
@@ -64,11 +64,12 @@ const AdminAnnouncements = () => {
               value={formData.description}
               onChange={handleChange}
               required
+              className="bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             />
           </div>
 
           <div>
-            <Button type="submit" className="w-full bg-purple-700 hover:bg-purple-800">
+            <Button type="submit" className="w-full bg-purple-700 hover:bg-purple-800 dark:bg-purple-600 dark:hover:bg-purple-700">
               Add Announcement
             </Button>
           </div>

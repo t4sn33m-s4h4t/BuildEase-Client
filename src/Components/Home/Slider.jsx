@@ -1,6 +1,5 @@
 import 'react-awesome-slider/dist/styles.css';
 import { Carousel } from 'flowbite-react';
-
 import banner1 from '../../assets/banners/banner 1.png';
 import banner2 from '../../assets/banners/banner 2.png';
 import banner3 from '../../assets/banners/banner 3.png';
@@ -33,19 +32,24 @@ export default function Slider() {
     ];
 
     return (
-        <div className="relative h-[70vh]">
+        <div className="relative h-[70vh] bg-white dark:bg-gray-900">
             <Carousel slideInterval={2500}>
                 {slides.map((slide, index) => (
-                    <div key={index} className="relative h-full ">
+                    <div key={index} className="relative h-full">
                         <img
                             src={slide.banner}
                             alt={slide.title}
                             className="w-full h-full object-cover"
                         />
-                        <div className=" md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xl font-semibold bg-opacity-60 bg-black text-center p-3 rounded-md">
+                        <div className="md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xl font-semibold bg-opacity-60 bg-black text-center p-3 rounded-md">
                             {slide.title}
                         </div>
-                        <Link to={"/apartment"} className=' md:block absolute top-2/3 left-1/2 -translate-x-1/2 text-center text-white text-xl font-semibold bg-opacity-60 bg-black p-3 rounded-md'> Explore Now</Link>
+                        <Link
+                            to={"/apartment"}
+                            className="md:block absolute top-2/3 left-1/2 -translate-x-1/2 text-center text-white text-xl font-semibold bg-opacity-60 bg-black p-3 rounded-md"
+                        >
+                            Explore Now
+                        </Link>
                     </div>
                 ))}
             </Carousel>

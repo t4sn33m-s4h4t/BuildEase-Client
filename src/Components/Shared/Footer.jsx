@@ -2,6 +2,7 @@
 import { Footer as Ft, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png"
+import DarkLogo from '../../assets/logo_dark.png'
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 export default function Footer() {
   return (
@@ -9,7 +10,9 @@ export default function Footer() {
       <div className="w-full text-center">
         <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
           <FooterBrand as={Link} className="justify-center" href="/">
-            <img className="md:max-w-14 max-w-12 mr-1 md:mr-3" src={logo} alt="" />
+
+            <img className="md:max-w-14 max-w-12 mr-1 md:mr-3 dark:hidden" src={logo} alt="" />
+            <img className="md:max-w-14 max-w-12 mr-1 md:mr-3 hidden dark:block" src={DarkLogo} alt="" />
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white ">BuildEase</span>
           </FooterBrand>
           <FooterLinkGroup className="justify-center">
@@ -23,7 +26,7 @@ export default function Footer() {
               <FaLinkedinIn size={24} />
             </FooterLink>
           </FooterLinkGroup>
-          
+
           <FooterLinkGroup className="justify-center mt-5 md:mt-0">
             <FooterLink as={Link} to="/">Home</FooterLink>
             <FooterLink as={Link} to="/apartment">Apartment</FooterLink>
