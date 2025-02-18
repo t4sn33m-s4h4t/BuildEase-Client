@@ -7,14 +7,14 @@ import { motion } from 'framer-motion';
 import useCoupons from '../../CustomHooks/useCoupons';
 function Coupons() {
     const { coupons } = useCoupons()
-    const [copiedCoupon, setCopiedCoupon] = useState('');
+    const [, setCopiedCoupon] = useState('');
     const handleCopy = (code) => {
         setCopiedCoupon(code);
         toast.success(`Coupon code "${code}" copied!`);
     };
 
     return (
-        <section className="py-16">
+        <section className="py-8">
             <div className="container mx-auto ">
 
                 <Title

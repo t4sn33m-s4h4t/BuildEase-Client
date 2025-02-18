@@ -3,7 +3,7 @@ import Title from '../Shared/Title';
 
 function About() {
   return (
-    <section className="py-2 ">
+    <section className="py-8 ">
       <div className="container mx-auto ">
         <Title 
           Heading="About The Building" 

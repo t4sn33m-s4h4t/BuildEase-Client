@@ -12,7 +12,7 @@ const Location = () => {
     };
 
     return (
-        <section className="py-16 ">
+        <section className="py-8 ">
             <Title
                 Heading=" Apartment Location and Directions"
                 Subheading="Your all-in-one platform for building management and affordable online room rentals."

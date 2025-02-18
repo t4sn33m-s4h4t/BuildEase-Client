@@ -14,7 +14,7 @@ const Apartment = () => {
 
   const { apartments, count, isLoading, refetch } = useApartments({
     page: currentPage,
-    limit: 6,
+    limit: 8,
     minRent,
     maxRent,
   });
@@ -70,7 +70,7 @@ const Apartment = () => {
           </Button>
         </div>
       </form>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid" id='cardView'>
         {apartments?.map((apartment, i) => (
           <ApartmentCard key={i} apartment={apartment} />
         ))}

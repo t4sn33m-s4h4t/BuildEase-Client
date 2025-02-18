@@ -53,7 +53,7 @@ const Agreement = () => {
   };
 
   return (
-    <div className=" py-10">
+    <div className=" py-8">
       <div className="max-w-4xl my-10 mx-auto p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
         <Title Heading="Add Apartment Agreement" />
         <form onSubmit={handleSubmit} className="space-y-6">

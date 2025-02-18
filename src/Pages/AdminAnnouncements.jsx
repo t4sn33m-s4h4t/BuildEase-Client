@@ -36,7 +36,7 @@ const AdminAnnouncements = () => {
   };
 
   return (
-    <div className="py-10 ">
+    <div className="py-8 ">
       <div className="md:w-4/5 lg:w-3/5 w-full my-10 mx-auto p-2 md:p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
         <Title Heading="Add Announcement" />
         <form onSubmit={handleSubmit} className="space-y-6">

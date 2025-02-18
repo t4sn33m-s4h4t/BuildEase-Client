@@ -77,7 +77,7 @@ const Navbar = () => {
   
   const [isImageError, setIsImageError] = useState(false);
   return (
-    <div className=" md:px-12 lg:px-36 bg-purple-200 sticky top-0 z-50">
+    <div className="px-2 md:px-12 lg:px-36 bg-purple-200 sticky top-0 z-50">
       <Nv fluid rounded className="bg-transparent ">
         <NavbarBrand as={Link} to="/">
           <img className="md:max-w-14 max-w-12 mr-1 md:mr-3" src={logo} alt="" />
