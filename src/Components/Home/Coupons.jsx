@@ -15,7 +15,7 @@ function Coupons() {
 
     return (
         <section className="py-16">
-            <div className="container mx-auto px-6 lg:px-12">
+            <div className="container mx-auto ">
 
                 <Title
                     Heading="Exclusive Coupons"

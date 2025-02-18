@@ -4,7 +4,7 @@ import Title from '../Shared/Title';
 function About() {
   return (
     <section className="py-2 ">
-      <div className="container mx-auto px-6 lg:px-12">
+      <div className="container mx-auto ">
         <Title 
           Heading="About The Building" 
           Subheading="Your all-in-one platform for building management and affordable online room rentals."

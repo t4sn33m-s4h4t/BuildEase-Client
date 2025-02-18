@@ -4,6 +4,8 @@ import Root from "../Layout/Root";
 import DashboardLayout from "../Layout/DashboardLayout"
 import Error from '../Pages/Error'
 import Home from '../Pages/Home.jsx'
+import About from "../Pages/About.jsx"
+import Favorites from "../Pages/Favorites.jsx"
 import MakePayment from '../Pages/MakePayment.jsx'
 import Apartment from '../Pages/Apartment'
 import Login from "../Pages/Login.jsx";
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: 'apartment',
         element: <Apartment />
+      },
+      {
+        path: 'about',
+        element: <About />
+      },
+      {
+        path: 'favorites',
+        element: <Favorites />
       },
       {
         path: 'agreement/:id',

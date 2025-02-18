@@ -11,7 +11,8 @@ import {
 } from "flowbite-react";
 import logo from '../../assets/logo.png'
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { FaHome, FaBuilding } from 'react-icons/fa';
+import { FaHome, FaBuilding, FaInfoCircle, FaHeart } from 'react-icons/fa';
+import {MdDashboard} from 'react-icons/md'
 import { useAuth } from "../../CustomHooks/useAuth";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -52,17 +53,35 @@ const Navbar = () => {
       name: "Apartment",
       path: "/apartment",
       icon: <FaBuilding />
+    },
+    {
+      name: "About",
+      path: "/about",
+      icon: <FaInfoCircle />
     }
   ];
-  
+  if (user && user.email) {
+    menus.push(
+      
+      {
+        name: "Favorites",
+      path: "/favorites",
+      icon: <FaHeart />
+      },{
+        name: "Dashboard",
+      path: "/dashboard",
+      icon: <MdDashboard />
+      },
+    )
+  }
   
   const [isImageError, setIsImageError] = useState(false);
   return (
-    <div className="px-1 md:px-20 lg:px-44 bg-purple-200 sticky top-0 z-50">
-      <Nv fluid rounded className="bg-transparent">
+    <div className=" md:px-12 lg:px-36 bg-purple-200 sticky top-0 z-50">
+      <Nv fluid rounded className="bg-transparent ">
         <NavbarBrand as={Link} to="/">
           <img className="md:max-w-14 max-w-12 mr-1 md:mr-3" src={logo} alt="" />
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white hidden md:block">BuildEase</span>
+          <span className="  self-center whitespace-nowrap text-xl font-semibold dark:text-white hidden lg:block">BuildEase</span>
         </NavbarBrand>
         <div className="flex md:order-2">
           {
@@ -88,7 +107,7 @@ const Navbar = () => {
                 <DropdownHeader>
                   <span className="block text-sm">{user?.displayName}</span>
                 </DropdownHeader>
-                <DropdownItem as={Link} to="/dashboard">Dashboard</DropdownItem>
+                <DropdownItem as={Link} to="/dashboard">Profile</DropdownItem>
                 <DropdownDivider />
                 <DropdownItem onClick={logOut}>Log out</DropdownItem>
               </Dropdown>
