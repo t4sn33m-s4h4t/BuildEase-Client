@@ -21,6 +21,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { BiLogInCircle } from "react-icons/bi";
 import ThemeController from "../ThemeController";
 import { IoLogInSharp } from "react-icons/io5";
+import BackToTop from "../BackToTop";
 
 const Navbar = () => {
   const { user, signOutUser, setUser } = useAuth();
@@ -77,6 +78,7 @@ const Navbar = () => {
   return (
     <div className="px-2 md:px-12 lg:px-36 bg-purple-200 dark:bg-gray-800 sticky top-0 z-50">
       <ThemeController />
+      <BackToTop />
       <Nv fluid rounded className="bg-transparent">
         <NavbarBrand as={Link} to="/">
         <img className="md:max-w-14 max-w-12 mr-1 md:mr-3 dark:hidden" src={logo} alt="" />
