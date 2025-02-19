@@ -6,16 +6,18 @@ import useCheckAdmin from "../../CustomHooks/useCheckAdmin";
 import { FaUser, FaBullhorn, FaMoneyCheckAlt, FaHistory, FaUserShield, FaUsers, FaFileContract } from "react-icons/fa";
 import { MdPayment, MdAnnouncement, MdCardGiftcard } from "react-icons/md";
 import logo from "../../assets/logo.png";
-
+import { MdDashboard } from 'react-icons/md';
 const Sidebar = () => {
     const [open, setOpen] = useState(true);
     const { data } = useCheckAdmin();
     const userMenu = [
+        {title: "Overview", path: '/dashboard/overview', icon: <MdDashboard />},
         { title: "My Profile", path: '/dashboard/profile', icon: <FaUser /> },
         { title: "Announcements", path: '/dashboard/announcements', icon: <FaBullhorn /> },
     ];
 
     const memberMenu = [
+        {title: "Overview", path: '/dashboard/overview', icon: <MdDashboard />},
         { title: "My Profile", path: '/dashboard/profile', icon: <FaUser /> },
         { title: "Announcements", path: '/dashboard/announcements', icon: <FaBullhorn /> },
         { title: "Make Payment", path: '/dashboard/make-payment', icon: <MdPayment />, spacing: true },
@@ -23,6 +25,7 @@ const Sidebar = () => {
     ];
 
     const adminMenu = [
+        {title: "Overview", path: '/dashboard/overview', icon: <MdDashboard />},
         { title: "Admin Profile", path: '/dashboard/admin-profile', icon: <FaUserShield /> },
         { title: "Manage Members", path: '/dashboard/manage-members', icon: <FaUsers /> },
         { title: "Make Announcements", path: '/dashboard/make-announcements', icon: <MdAnnouncement /> },

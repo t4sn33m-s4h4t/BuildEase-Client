@@ -3,6 +3,7 @@ import useAxios from './useAxios';
 
 const useCoupons = () => {    
     const normalAxios = useAxios() 
+ 
   const {
     data,
     isLoading,
@@ -11,7 +12,8 @@ const useCoupons = () => {
    {
     queryKey: ["coupons"],
     queryFn: async () => {
-        const response = await normalAxios.get('/coupons');
+      const response = await normalAxios.get('/coupons'); 
+      console.log(response)
         return response.data;
       },
 }

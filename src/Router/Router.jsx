@@ -23,6 +23,7 @@ import Coupons from "../Components/Home/Coupons.jsx";
 import AdminProtectedRoute from "./AdminProtectedRoute.jsx";
 import SecureRoute from "./SecureRoute.jsx"
 import PrivateRoute from "./PrivateRoute.jsx"
+import Overview from "../Pages/Overview.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,7 +66,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Navigate to="/dashboard/profile"/> ,
+        element: <Overview />,
+      },
+      {
+        path: 'overview',
+        element: <Overview />,
       },
       {
         path: 'profile',

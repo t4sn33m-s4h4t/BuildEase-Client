@@ -1,25 +1,26 @@
- 
 import Title from '../Components/Shared/Title';
 import ApartmentCard from '../Components/Apartment/card';
 import Pagination from '../Components/Pagination';
 import useApartments from '../CustomHooks/useApartments';
 import Loading from './Loading';
 import { useState } from 'react';
-import { Button, Label, TextInput } from 'flowbite-react';
+import { Button, Label, TextInput, Select } from 'flowbite-react';
 
 const Apartment = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [minRent, setMinRent] = useState('');
   const [maxRent, setMaxRent] = useState('');
+  const [sortRent, setSortRent] = useState(''); 
 
   const { apartments, count, isLoading, refetch } = useApartments({
     page: currentPage,
     limit: 8,
     minRent,
     maxRent,
+    sortRent,  
   });
 
-  const totalPages = Math.ceil(count / 6);
+  const totalPages = Math.ceil(count / 8);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,25 +29,27 @@ const Apartment = () => {
       refetch();
     }
   };
+ 
+  const handleSortChange = (e) => {
+    setSortRent(e.target.value);
+    setCurrentPage(1);  
+    refetch();
+  };
 
   if (isLoading) return <Loading />;
 
   return (
-    <div className="  dark:bg-gray-900 min-h-screen py-8">
+    <div className="dark:bg-gray-900 min-h-screen py-8">
       <Title Heading="All Apartments" />
-      <form
-        onSubmit={handleSubmit}
-        className="flex md:justify-between items-center md:flex-row flex-col mx-auto gap-4 mb-10 md:items-end"
-      >
-        <div className="flex gap-5">
+       
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
+ 
+        <form
+          onSubmit={handleSubmit}
+          className="flex items-end gap-4 flex-wrap"
+        >
           <div>
-            <div className="mb-2 block">
-              <Label
-                htmlFor="setMinRent"
-                value="Minimum Rent"
-                className="text-gray-800 dark:text-gray-300"
-              />
-            </div>
+            <Label htmlFor="setMinRent" value="Minimum Rent" />
             <TextInput
               id="setMinRent"
               type="number"
@@ -54,17 +57,11 @@ const Apartment = () => {
               onChange={(e) => setMinRent(e.target.value)}
               required
               min="0"
-              className="bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-300 border-gray-300 dark:border-gray-600"
+              className="w-full"
             />
           </div>
           <div>
-            <div className="mb-2 block">
-              <Label
-                htmlFor="setMaxRent"
-                value="Maximum Rent"
-                className="text-gray-800 dark:text-gray-300"
-              />
-            </div>
+            <Label htmlFor="setMaxRent" value="Maximum Rent" />
             <TextInput
               id="setMaxRent"
               type="number"
@@ -72,24 +69,44 @@ const Apartment = () => {
               onChange={(e) => setMaxRent(e.target.value)}
               required
               min="0"
-              className="bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-300 border-gray-300 dark:border-gray-600"
+              className="w-full"
             />
           </div>
-        </div>
-        <div>
           <Button
             type="submit"
-            className="w-full bg-purple-700 hover:bg-purple-800 text-white dark:bg-purple-800 dark:hover:bg-purple-900"
+            className="bg-purple-700 hover:bg-purple-800 dark:bg-purple-700 text-white"
           >
             Search
           </Button>
+        </form>
+ 
+        <div className="w-full md:w-auto">
+          <Label htmlFor="sortRent" value="Sort by Rent" />
+          <Select 
+            id="sortRent"
+            value={sortRent}
+            onChange={handleSortChange}
+            className="w-full md:w-auto"
+          >
+            <option value="">Default Sorting</option>
+            <option value="asc">Rent: Low to High</option>
+            <option value="desc">Rent: High to Low</option>
+          </Select>
         </div>
-      </form>
-      <div className="grid" id="cardView">
-        {apartments?.map((apartment, i) => (
-          <ApartmentCard key={i} apartment={apartment} />
-        ))}
       </div>
+ 
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="cardView">
+        {apartments?.length > 0 ? (
+          apartments.map((apartment, i) => (
+            <ApartmentCard key={i} apartment={apartment} />
+          ))
+        ) : (
+          <div className="col-span-full text-center text-gray-500">
+            No apartments found
+          </div>
+        )}
+      </div>
+ 
       <Pagination
         refetch={refetch}
         currentPage={currentPage}
@@ -100,4 +117,4 @@ const Apartment = () => {
   );
 };
 
-export default Apartment; 
+export default Apartment;

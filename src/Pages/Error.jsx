@@ -8,7 +8,7 @@ const Error = () => {
                 <p className="text-2xl font-medium text-gray-600 dark:text-gray-400 mb-6">Page Not Found</p>
                 <Link
                     to="/"
-                    className="px-4 py-2 font-medium text-white bg-indigo-500 rounded-md hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 transition-all duration-200 ease-in-out"
+                    className="px-4 py-2 font-medium text-white bg-purple-500 rounded-md hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700 transition-all duration-200 ease-in-out"
                 >
                     Go Home
                 </Link>

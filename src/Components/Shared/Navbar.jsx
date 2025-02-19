@@ -72,10 +72,11 @@ const Navbar = () => {
       },
     );
   }
-
+  
   const [isImageError, setIsImageError] = useState(false);
   return (
     <div className="px-2 md:px-12 lg:px-36 bg-purple-200 dark:bg-gray-800 sticky top-0 z-50">
+      <ThemeController />
       <Nv fluid rounded className="bg-transparent">
         <NavbarBrand as={Link} to="/">
         <img className="md:max-w-14 max-w-12 mr-1 md:mr-3 dark:hidden" src={logo} alt="" />
@@ -158,11 +159,11 @@ const Navbar = () => {
                   <span>{menu.icon}</span>
                   <span>{menu.name}</span>
                 </div>
+               
               </NavLink>
             ))
           }
         </NavbarCollapse>
-        <ThemeController />
       </Nv>
     </div>
   );

@@ -34,10 +34,16 @@ const ThemeController = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className="p-2   rounded-lg text-gray-800 dark:text-gray-200"
+      className="fixed bottom-4 left-4 z-50 p-2 bg-gray-100 dark:bg-gray-800 rounded-full shadow-lg 
+      hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 
+      text-gray-800 dark:text-gray-200 flex items-center justify-center"
+      aria-label="Toggle Dark Mode"
     >
-      {isDarkMode ? <FaSun />  : <FaMoon />
-      }
+      {isDarkMode ? (
+        <FaSun className="w-6 h-6" />
+      ) : (
+        <FaMoon className="w-6 h-6" />
+      )}
     </button>
   );
 };
