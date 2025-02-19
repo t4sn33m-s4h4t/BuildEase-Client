@@ -5,7 +5,6 @@ import DashboardLayout from "../Layout/DashboardLayout"
 import Error from '../Pages/Error'
 import Home from '../Pages/Home.jsx'
 import About from "../Pages/About.jsx"
-import Favorites from "../Pages/Favorites.jsx"
 import MakePayment from '../Pages/MakePayment.jsx'
 import Apartment from '../Pages/Apartment'
 import Login from "../Pages/Login.jsx";
@@ -24,6 +23,7 @@ import AdminProtectedRoute from "./AdminProtectedRoute.jsx";
 import SecureRoute from "./SecureRoute.jsx"
 import PrivateRoute from "./PrivateRoute.jsx"
 import Overview from "../Pages/Overview.jsx";
+import TermsOfService from "../Pages/TermsOfService.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,8 +43,8 @@ const router = createBrowserRouter([
         element: <About />
       },
       {
-        path: 'favorites',
-        element: <Favorites />
+        path: 'terms',
+        element: <TermsOfService />
       },
       {
         path: 'agreement/:id',

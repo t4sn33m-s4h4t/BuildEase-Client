@@ -12,7 +12,7 @@ import {
 import logo from '../../assets/logo.png';
 import DarkLogo from '../../assets/logo_dark.png'
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { FaHome, FaBuilding, FaInfoCircle, FaHeart } from 'react-icons/fa';
+import { FaHome, FaBuilding, FaInfoCircle } from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
 import { useAuth } from "../../CustomHooks/useAuth";
 import { useEffect, useState } from "react";
@@ -22,6 +22,7 @@ import { BiLogInCircle } from "react-icons/bi";
 import ThemeController from "../ThemeController";
 import { IoLogInSharp } from "react-icons/io5";
 import BackToTop from "../BackToTop";
+import { BsFileEarmarkRuledFill } from "react-icons/bs";
 
 const Navbar = () => {
   const { user, signOutUser, setUser } = useAuth();
@@ -62,9 +63,10 @@ const Navbar = () => {
   if (user && user.email) {
     menus.push(
       {
-        name: "Favorites",
-        path: "/favorites",
-        icon: <FaHeart />
+        name: "Terms",
+        path: "/terms",
+        icon: <BsFileEarmarkRuledFill />
+
       },
       {
         name: "Dashboard",
@@ -109,7 +111,7 @@ const Navbar = () => {
                 <DropdownHeader>
                   <span className="block text-sm">{user?.displayName}</span>
                 </DropdownHeader>
-                <DropdownItem as={Link} to="/dashboard">Profile</DropdownItem>
+                <DropdownItem as={Link} to="/dashboard/profile">Profile</DropdownItem>
                 <DropdownDivider />
                 <DropdownItem onClick={logOut}>Log out</DropdownItem>
               </Dropdown>
