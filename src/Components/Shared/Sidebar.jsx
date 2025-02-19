@@ -10,14 +10,12 @@ import { MdDashboard } from 'react-icons/md';
 const Sidebar = () => {
     const [open, setOpen] = useState(true);
     const { data } = useCheckAdmin();
-    const userMenu = [
-        {title: "Overview", path: '/dashboard/overview', icon: <MdDashboard />},
+    const userMenu = [ 
         { title: "My Profile", path: '/dashboard/profile', icon: <FaUser /> },
         { title: "Announcements", path: '/dashboard/announcements', icon: <FaBullhorn /> },
     ];
 
     const memberMenu = [
-        {title: "Overview", path: '/dashboard/overview', icon: <MdDashboard />},
         { title: "My Profile", path: '/dashboard/profile', icon: <FaUser /> },
         { title: "Announcements", path: '/dashboard/announcements', icon: <FaBullhorn /> },
         { title: "Make Payment", path: '/dashboard/make-payment', icon: <MdPayment />, spacing: true },

@@ -12,5 +12,5 @@ export default function AdminProtectedRoute({ children }) {
     if (data?.userRole === 'admin') {
         return children;
     }
-    return <Navigate to='/'/>;
+    return <Navigate to='/dashboard/profile'/>;
 }

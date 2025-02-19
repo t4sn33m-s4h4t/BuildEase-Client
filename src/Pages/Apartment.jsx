@@ -10,13 +10,16 @@ const Apartment = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [minRent, setMinRent] = useState('');
   const [maxRent, setMaxRent] = useState('');
-  const [sortRent, setSortRent] = useState(''); 
+  const [sortRent, setSortRent] = useState('');
+   
+  const [filterMinRent, setFilterMinRent] = useState('');
+  const [filterMaxRent, setFilterMaxRent] = useState('');
 
   const { apartments, count, isLoading, refetch } = useApartments({
     page: currentPage,
     limit: 8,
-    minRent,
-    maxRent,
+    minRent: filterMinRent,
+    maxRent: filterMaxRent,
     sortRent,  
   });
 
@@ -24,7 +27,9 @@ const Apartment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (minRent >= 0 && maxRent >= 0) {
+    if ((minRent === '' || minRent >= 0) && (maxRent === '' || maxRent >= 0)) { 
+      setFilterMinRent(minRent);
+      setFilterMaxRent(maxRent);
       setCurrentPage(1);
       refetch();
     }
@@ -43,7 +48,6 @@ const Apartment = () => {
       <Title Heading="All Apartments" />
        
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
- 
         <form
           onSubmit={handleSubmit}
           className="flex items-end gap-4 flex-wrap"
@@ -55,7 +59,6 @@ const Apartment = () => {
               type="number"
               value={minRent}
               onChange={(e) => setMinRent(e.target.value)}
-              required
               min="0"
               className="w-full"
             />
@@ -67,7 +70,6 @@ const Apartment = () => {
               type="number"
               value={maxRent}
               onChange={(e) => setMaxRent(e.target.value)}
-              required
               min="0"
               className="w-full"
             />

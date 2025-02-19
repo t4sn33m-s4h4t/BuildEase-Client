@@ -66,11 +66,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Overview />,
+        element: <AdminProtectedRoute><Overview /></AdminProtectedRoute>,
       },
       {
         path: 'overview',
-        element: <Overview />,
+        element: <AdminProtectedRoute><Overview /></AdminProtectedRoute>,
       },
       {
         path: 'profile',
